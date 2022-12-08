@@ -35,14 +35,14 @@ public class DaoFactory {
 		return this.serieDao;
 	}
 	
-	public ISaisonDao getSaisonDao() {
+	public ISaisonDao getSaisonDao() throws DaoException {
 		if(this.saisonDao == null) {
 			this.saisonDao = new SaisonDao();
 		}
 		return this.saisonDao;
 	}
 	
-	public IEpisodeDao getEpisodeDao() {
+	public IEpisodeDao getEpisodeDao() throws DaoException {
 		if(this.episodeDao == null) {
 			this.episodeDao = new EpisodeDao();
 		}

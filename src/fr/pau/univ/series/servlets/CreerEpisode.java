@@ -26,7 +26,7 @@ public class CreerEpisode extends HttpServlet {
             int idSaison = Integer.parseInt(request.getParameter("saison"));
             String nomEpisode = request.getParameter("nomEpisode");
             if (nomEpisode != null && !nomEpisode.isBlank()) {
-                Episode ep = new Episode(nomEpisode);
+                Episode ep = new Episode(nomEpisode, idSaison);
                 Saison sais = daoSais.readSaison(idSaison);
                 DaoBddHelper.getInstance().beginTransaction();
                 ep = DaoFactory.getInstance().getEpisodeDao().createEpisde(ep, false);

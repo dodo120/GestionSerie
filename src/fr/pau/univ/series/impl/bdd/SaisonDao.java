@@ -1,3 +1,5 @@
+package fr.pau.univ.series.impl.bdd;
+
 
 import java.util.List;
 
@@ -40,15 +42,21 @@ public class SaisonDao implements ISaisonDao{
 	}
 	return null;
 	}
+	
+	@Override
+	public List<Saison> readSaisonBySerie(int idEpisode) throws DaoException {
+		// TODO Auto-generated method stub
+		return null;
+	}
 
 	@Override
-	public List<Saison> readAllSaisons() throws DaoException {
+	public List<Saison> readAllSaison() throws DaoException {
 	TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findAll", Saison.class);
 	return query.getResultList();
 	}
 
 	@Override
-	public void updateSaison(final Saison s, , final boolean useTransaction) throws DaoException {
+	public void updateSaison(final Saison s, final boolean useTransaction) throws DaoException {
 		try {
 			if (useTransaction) {
 		this.bdd.beginTransaction();
@@ -65,7 +73,7 @@ public class SaisonDao implements ISaisonDao{
 
 
 	@Override
-	public void deleteSaison(final Saison s, final Boolean useTransaction) throws DaoException {
+	public void deleteSaison(Saison s, final boolean useTransaction) throws DaoException {
 	try {
 	if (useTransaction) {
 	this.bdd.beginTransaction();
@@ -80,7 +88,7 @@ public class SaisonDao implements ISaisonDao{
 	}
 	throw new DaoException("Impossible de supprimer la série", e);
 	}
-	}
+	}	
 
 
 }

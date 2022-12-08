@@ -1,12 +1,14 @@
+package fr.pau.univ.series.impl.bdd;
+
 import java.util.List;
 
 import javax.persistence.PersistenceException;
 import javax.persistence.TypedQuery;
 
+
 import fr.pau.univ.series.dao.interfaces.IEpisodeDao;
 import fr.pau.univ.series.exception.DaoException;
 import fr.pau.univ.series.model.Episode;
-
 
 public class EpisodeDao implements IEpisodeDao{
 
@@ -23,9 +25,9 @@ public class EpisodeDao implements IEpisodeDao{
 	this.bdd.getEm().persist(e);
 	this.bdd.commitTransaction();
 	return e;
-	} catch (final PersistenceException e) {
+	} catch (final PersistenceException e1) {
 	this.bdd.rollbackTransaction();
-	throw new DaoException("Impossible de créer la série", e);
+	throw new DaoException("Impossible de créer la série", e1);
 	}
 	}
 
@@ -42,25 +44,24 @@ public class EpisodeDao implements IEpisodeDao{
 	}
 
 	@Override
-	public List<Episode> readAllEpisodes() throws DaoException {
+	public List<Episode> readAllEpisode() throws DaoException {
 	TypedQuery<Episode> query = this.bdd.getEm().createNamedQuery("Episode.findAll", Episode.class);
 	return query.getResultList();
 	}
 
 
 	@Override
-	public Episode readEpisodeBySaison(int idSaison) {
+	public List<Episode> readEpisodeBySaison(int idSaison) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 	
 	@Override
-	public Episode readEpisodeBySerie(int idSaison) {
+	public List<Episode> readEpisodeBySerie(int idSaison) {
 		// TODO Auto-generated method stub
 		return null;
 	}
 
-	@Override
 	public void updateEpisode(final Episode e,final boolean useTransaction) throws DaoException {
 		try {
 			if (useTransaction) {
@@ -70,14 +71,13 @@ public class EpisodeDao implements IEpisodeDao{
 		if (useTransaction) {
 		this.bdd.commitTransaction();
 		}
-		} catch (final PersistenceException e) {
+		} catch (final PersistenceException e1) {
 		this.bdd.rollbackTransaction();
-		throw new DaoException("Impossible de modifier la série", e);
+		throw new DaoException("Impossible de modifier la série", e1);
 		}
 	}
 
 
-	@Override
 	public void deleteEpisode(final Episode e, final boolean useTransaction) throws DaoException {
 	try {
 	if (useTransaction) {
@@ -87,14 +87,13 @@ public class EpisodeDao implements IEpisodeDao{
 	if (useTransaction) {
 	this.bdd.commitTransaction();
 	}
-	} catch (final PersistenceException e) {
+	} catch (final PersistenceException e1) {
 	if (useTransaction) {
 	this.bdd.rollbackTransaction();
 	}
-	throw new DaoException("Impossible de supprimer la série", e);
+	throw new DaoException("Impossible de supprimer la série", e1);
 	}
 	}
-
 
 
 }

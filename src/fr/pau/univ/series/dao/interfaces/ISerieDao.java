@@ -16,8 +16,8 @@ public interface ISerieDao {
 	public Serie readSerie(int id) throws DaoException;
 	public List<Serie> readAllSeries() throws DaoException;
 	public Serie readSerieBySaison(int idSaison) throws DaoException;
-	public void updateSerie(Serie serie) throws DaoException;
-	public void deleteSerie(Serie serie) throws DaoException;
+	public void updateSerie(Serie serie,final boolean useTransaction) throws DaoException;
+	public void deleteSerie(Serie serie,final boolean useTransaction) throws DaoException;
 	
 	
 }

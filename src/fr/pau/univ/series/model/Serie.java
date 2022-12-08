@@ -28,11 +28,10 @@ import fr.pau.univ.series.exception.DaoException;
 	@NamedQuery(name="Serie.findAll",
 			query="SELECT ser FROM Serie ser"),
 	@NamedQuery(name="Serie.findByEpisode",
-			query="SELECT ser FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = ANY ( SELECT e.id FROM s.episodes e)"),
+			query="SELECT ser FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = ANY ( SELECT ser.id FROM s.episodes e)"),
 	@NamedQuery(name="Serie.findBySaison",
-			query="SELECT ser FROM Saison s, IN(ser.saisons) sais WHERE ser.id = :id")
+			query="SELECT ser FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = :id")
 })
-@Path("/serie")
 public class Serie {
 
 	private int id;
@@ -86,9 +85,6 @@ public class Serie {
 	 */
 	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
 	@JoinColumn(name = "fk_serie",referencedColumnName = "Id")
-	@GET
-	@Path("/all")
-	@Produces(MediaType.APPLICATION_JSON)
 	public final List<Saison> getSaisons() {
 		return this.saisons;
 	}
@@ -158,9 +154,6 @@ public class Serie {
 	 *         with given Id.
 	 * @throws SeriesException in case season was not found.
 	 */
-	@GET
-	@Path("/{id}")
-	@Produces(MediaType.APPLICATION_JSON)
 	public Saison getSaisonById(final int id) throws DaoException {
 		for (final Saison saison : this.saisons) {
 			if (saison.getId() == id) {

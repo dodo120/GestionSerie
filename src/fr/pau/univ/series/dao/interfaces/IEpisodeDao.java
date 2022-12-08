@@ -12,7 +12,7 @@ public interface IEpisodeDao {
 	public List<Episode> readAllEpisode() throws DaoException;
 	public List<Episode> readEpisodeBySerie(int idSerie) throws DaoException;
 	public List<Episode> readEpisodeBySaison(int idSaison) throws DaoException;
-	public void updateEpisode(Episode episode) throws DaoException;
-	public void deleteEpisode(Episode episode) throws DaoException;
+	public void updateEpisode(Episode episode,final boolean useTransaction) throws DaoException;
+	public void deleteEpisode(Episode episode,final boolean useTransaction) throws DaoException;
 	
 }
