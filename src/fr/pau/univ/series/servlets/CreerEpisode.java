@@ -4,6 +4,7 @@ import java.io.IOException;
 
 import fr.pau.univ.series.dao.DaoFactory;
 import fr.pau.univ.series.exception.DaoException;
+import fr.pau.univ.series.impl.bdd.SaisonDao;
 import fr.pau.univ.series.model.DataProvider;
 import fr.pau.univ.series.model.Episode;
 import fr.pau.univ.series.model.Saison;
@@ -27,7 +28,9 @@ public class CreerEpisode extends HttpServlet {
             String nomEpisode = request.getParameter("nomEpisode");
             if (nomEpisode != null && !nomEpisode.isBlank()) {
                 Episode ep = new Episode(nomEpisode, idSaison);
-                Saison sais = daoSais.readSaison(idSaison);
+                Saison sais;
+				sais = SaisonDao.readSaison(idSaison);
+				
                 DaoBddHelper.getInstance().beginTransaction();
                 ep = DaoFactory.getInstance().getEpisodeDao().createEpisde(ep, false);
                 sais.addEpisode(ep);

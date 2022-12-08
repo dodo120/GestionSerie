@@ -20,26 +20,31 @@ import javax.persistence.Table;
 
 import fr.pau.univ.series.exception.DaoException;
 
+//Ces annotations permettent d'indiquer que c'est une entité de notre BDD. Grâcee à JPA, nous pouvons utiliser ces annotations pour
+//que Java, Jakarta, etc. comprennet la connection classe Java <> Table SQL
+//C'est pour cela que nous ajoutons @Entity et que nous expliquons le nom de la table avec @Table(name = "non_de_la_table")
+//Puis, nous ajoutons deux query SQL que nous nommons findById et findAll. La requête byId contient un argument identifiable par :id
+//Si une requête contient ':' puis le nom d'une varible, cela veut dire que se sera notre argument et qu'il prendra la valeur de la 
+//variable ID.
 @Entity
-@Table(name="Saison")
+@Table(name = "Saison")
 @NamedQueries({
-	@NamedQuery(name="Saison.findById",
-			query="SELECT s FROM Saison s WHERE s.id = :id"),
-	@NamedQuery(name="Saison.findAll",
-			query="SELECT s FROM Saison s"),
-	@NamedQuery(name="Saison.findByEpisode",
-			query="SELECT s FROM Saison s WHERE :id = ANY (SELECT e.id FROM s.episodes e)"),
-	@NamedQuery(name="Saison.findBySerie",
-			query="SELECT sais FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = :id")
+		@NamedQuery(name = "Saison.findById", query = "SELECT s FROM Saison s WHERE s.id = :id"),
+		@NamedQuery(name = "Saison.findAll", query = "SELECT s FROM Saison s"),
+		@NamedQuery(name = "Saison.findByEpisode", query = "SELECT s FROM Saison s WHERE :id = ANY (SELECT e.id FROM s.episodes e)"),
+		@NamedQuery(name = "Saison.findBySerie", query = "SELECT sais FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = :id")
 })
+//Noter simple classe Java
 public class Saison {
 
-	private int id;
-	private int numero;
-	private String nom;
-	private boolean toutVu = false;
-	private List<Episode> episodes = new ArrayList<>();
+	//Nos attributs
+	private int id; //Notre id
+	private int numero; //Le numéro de la saison
+	private String nom; //Le nom de la saison
+	private boolean toutVu = false; //Tous les épisodes visionnés
+	private List<Episode> episodes = new ArrayList<>(); //La liste des épisodes de la saison
 
+	//Constructor
 	/**
 	 * @param nom Nom de la saison.
 	 */
@@ -48,19 +53,19 @@ public class Saison {
 		this.numero = numero;
 		setId(++DataProvider.lastSaisonId);
 	}
-	
+
+	//Constructor vide
 	public Saison() {
 		this.nom = "";
 		this.numero = -1;
 	}
-
 
 	/**
 	 * @return the id
 	 */
 	@Id
 	@Column(name = "Id")
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {
 		return this.id;
 	}
@@ -94,7 +99,7 @@ public class Saison {
 	public final String getNom() {
 		return this.nom;
 	}
-	
+
 	public final void setNom(String nom) {
 		this.nom = nom;
 	}
@@ -102,16 +107,21 @@ public class Saison {
 	/**
 	 * @return the saisons
 	 */
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
-	@JoinColumn(name = "fk_saison",referencedColumnName = "Id")
+	//Petite différence sur les annotations ici. Nous avons notre liste d'épisode de la série. Nous devons donc faire des références 
+	//à des épisodes dans notre BDD. Nous devons donc spécifier la relation (OneToMany ici car une saison contient plusieurs épisodes)
+	//Et nous devons joindre les colonnes avec la ForeignKey fk_saison qui référence la colonne ID dans la table des épisodes.
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "fk_saison", referencedColumnName = "Id")
 	public final List<Episode> getEpisodes() {
 		return this.episodes;
 	}
-	
+
 	public final void setEpisodes(List<Episode> listeEpisode) {
 		this.episodes = listeEpisode;
 	}
 
+	//Nous devons être capable d'ajouter, modifier et supprimer des épisodes de notre liste d'épisode pour la saison depuis notre 
+	//projet (notre application). Les méthodes ci-dessous s'occupent de faire ces ajouts / suppression de notre liste episodes
 	/**
 	 * This method adds given Episode to the list of Episodes.
 	 *
@@ -142,6 +152,8 @@ public class Saison {
 	/**
 	 * @param toutVu the toutVu to set
 	 */
+	//Cet attribut ne fait pas référence à une colonne de notre table. Il s'agit d'une valeur définie par la liste des épisodes 
+	//par rapport à leur état vu.
 	public final void setToutVu(final boolean toutVu) {
 		this.toutVu = toutVu;
 	}

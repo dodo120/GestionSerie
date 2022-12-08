@@ -8,26 +8,28 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
-
-
+//Cette classe permet de créer un contextListener. Elle utilise un Servlet, possible avec tomcat et permet donc de s'occuper du côté
+//serveur de ce projet. 
+//Pour faire simple, un servlet = une classe Java qui permet de créer dynamiquement des données au sein d'un serveur HTTP.
+//Je pense pas que vous ayez besoin de comprendre de A-Z le protocol HTTP ni les relations Java <> Servlet <> Protocol HTTP <> Web, etc.
 @WebListener
 public class SeriesContextListener implements ServletContextListener {
     private static EntityManager em;
-    
+
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         final EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionSeries");
         em = emf.createEntityManager();
     }
-    
+
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
-        if(em != null) {
+        if (em != null) {
             em.getEntityManagerFactory().close();
         }
     }
-    
+
     public static EntityManager getEntityManager() {
         return em;
-        }
+    }
 }

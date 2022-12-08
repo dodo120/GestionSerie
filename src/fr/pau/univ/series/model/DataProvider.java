@@ -7,6 +7,9 @@ import java.util.List;
 
 import fr.pau.univ.series.exception.DaoException;
 
+//Grosse classe
+//Elle permet d'ajouter des données dans notre programme en dure sans s'ccouper des données du serveur SQL.
+//Elle devient obselète dès lors que nous utilisons les données de notre serveur SQL (donc que nous connectons notre serveur SQL)
 public class DataProvider {
 
 	private static DataProvider instance;
@@ -16,7 +19,7 @@ public class DataProvider {
 
 	private final List<Serie> listeSeries = new ArrayList<>();
 
-	/** 
+	/**
 	 * Returns the instance of this singleton.
 	 *
 	 * @return the instance of this singleton.

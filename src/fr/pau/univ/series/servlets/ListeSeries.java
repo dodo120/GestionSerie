@@ -19,7 +19,7 @@ public class ListeSeries extends HttpServlet {
 		try {
 			request.setAttribute("series", DaoFactory.getInstance().getSerieDao().readAllSeries());
 		} catch (DaoException e) {
-			
+
 		}
 
 	}

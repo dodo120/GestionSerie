@@ -20,17 +20,24 @@ import javax.persistence.Table;
 
 import fr.pau.univ.series.exception.DaoException;
 
+
+//Ces annotations permettent d'indiquer que c'est une entité de notre BDD. Grâcee à JPA, nous pouvons utiliser ces annotations pour
+//que Java, Jakarta, etc. comprennet la connection classe Java <> Table SQL
+//C'est pour cela que nous ajoutons @Entity et que nous expliquons le nom de la table avec @Table(name = "non_de_la_table")
+//Puis, nous ajoutons deux query SQL que nous nommons findById et findAll. La requête byId contient un argument identifiable par :id
+//Si une requête contient ':' puis le nom d'une varible, cela veut dire que se sera notre argument et qu'il prendra la valeur de la 
+//variable ID.
+//Cette classe est semblable à la classe saison, sauf que nous avons un tableau de saison pour la série et nous pourrons donc 
+//retrouver les épisodes de la série.
+//Je n'ajoute pas tous les commentaires, seulement les commentaires nécessaires pour la compréhension sur les points qui changent 
+//et les nouveautés.
 @Entity
-@Table(name="Serie")
+@Table(name = "Serie")
 @NamedQueries({
-	@NamedQuery(name="Serie.findById",
-			query="SELECT ser FROM Serie ser WHERE ser.id = :id"),
-	@NamedQuery(name="Serie.findAll",
-			query="SELECT ser FROM Serie ser"),
-	@NamedQuery(name="Serie.findByEpisode",
-			query="SELECT ser FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = ANY ( SELECT ser.id FROM s.episodes e)"),
-	@NamedQuery(name="Serie.findBySaison",
-			query="SELECT ser FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = :id")
+		@NamedQuery(name = "Serie.findById", query = "SELECT ser FROM Serie ser WHERE ser.id = :id"),
+		@NamedQuery(name = "Serie.findAll", query = "SELECT ser FROM Serie ser"),
+		@NamedQuery(name = "Serie.findByEpisode", query = "SELECT ser FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = ANY ( SELECT ser.id FROM s.episodes e)"),
+		@NamedQuery(name = "Serie.findBySaison", query = "SELECT ser FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = :id")
 })
 public class Serie {
 
@@ -46,7 +53,7 @@ public class Serie {
 		this.nom = nom;
 		setId(++DataProvider.lastSerieId);
 	}
-	
+
 	public Serie() {
 		this.nom = "";
 	}
@@ -56,7 +63,7 @@ public class Serie {
 	 */
 	@Id
 	@Column(name = "Id")
-	@GeneratedValue(strategy =GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	public int getId() {
 		return this.id;
 	}
@@ -75,7 +82,7 @@ public class Serie {
 	public final String getNom() {
 		return this.nom;
 	}
-	
+
 	public final void setNom(String nom) {
 		this.nom = nom;
 	}
@@ -83,12 +90,12 @@ public class Serie {
 	/**
 	 * @return the saisons
 	 */
-	@OneToMany(fetch = FetchType.EAGER,cascade = CascadeType.ALL,orphanRemoval = true)
-	@JoinColumn(name = "fk_serie",referencedColumnName = "Id")
+	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
+	@JoinColumn(name = "fk_serie", referencedColumnName = "Id")
 	public final List<Saison> getSaisons() {
 		return this.saisons;
 	}
-	
+
 	public void setSaisons(List<Saison> listeSaison) {
 		this.saisons = listeSaison;
 	}
