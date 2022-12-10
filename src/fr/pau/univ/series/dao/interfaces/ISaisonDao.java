@@ -18,10 +18,12 @@ public interface ISaisonDao {
 
 	public List<Saison> readAllSaison() throws DaoException;
 
-	public List<Saison> readSaisonBySerie(int idEpisode) throws DaoException;
+	public List<Saison> readSaisonBySerie(int idSaison) throws DaoException;
+	
+	public Saison readSaisonByEpisode(int idEpisode) throws DaoException;
 
 	// Les méthodes d'écritures (d'édition)
-	public Saison createSaison(Saison saison) throws DaoException;
+	public Saison createSaison(Saison saison, final boolean useTransaction) throws DaoException;
 
 	public void updateSaison(Saison saison, final boolean useTransaction) throws DaoException;
 

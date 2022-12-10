@@ -8,10 +8,10 @@ import jakarta.servlet.ServletContextEvent;
 import jakarta.servlet.ServletContextListener;
 import jakarta.servlet.annotation.WebListener;
 
-//Cette classe permet de créer un contextListener. Elle utilise un Servlet, possible avec tomcat et permet donc de s'occuper du côté
+//Cette classe permet de créer un contextListener. Elle utilise un Servlet, possible avec Tomcat et permet donc de s'occuper du côté
 //serveur de ce projet. 
 //Pour faire simple, un servlet = une classe Java qui permet de créer dynamiquement des données au sein d'un serveur HTTP.
-//Je pense pas que vous ayez besoin de comprendre de A-Z le protocol HTTP ni les relations Java <> Servlet <> Protocol HTTP <> Web, etc.
+//Je ne pense pas que vous ayez besoin de comprendre de A-Z le protocole HTTP, ni les relations Java <> Servlet <> Protocole HTTP <> Web, etc.
 @WebListener
 public class SeriesContextListener implements ServletContextListener {
     private static EntityManager em;

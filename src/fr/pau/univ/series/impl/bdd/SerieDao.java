@@ -40,18 +40,37 @@ public class SerieDao implements ISerieDao {
 
 	@Override
 	public Serie readSerieBySaison(int idSaison) {
-		// TODO Auto-generated method stub
+		final TypedQuery<Serie> query = this.bdd.getEm().createNamedQuery("Serie.findBySaison", Serie.class);
+		query.setParameter("id", idSaison);
+		final List<Serie> ret = query.getResultList();
+		if (ret.size() > 0) {
+			return ret.get(0);
+		}
 		return null;
 	}
 
+	@Override
+	public Serie readSerieByEpisode() throws DaoException{
+		TypedQuery<Serie> query = this.bdd.getEm().createNamedQuery("Serie.findByEpisode", Serie.class);
+		final List<Serie> ret = query.getResultList();
+		if (ret.size() > 0) {
+			return ret.get(0);
+		}
+		return null;
+	}
+	
 	//Méthodes d'édition des données
 	
 	@Override
-	public Serie createSerie(final Serie s) throws DaoException {
+	public Serie createSerie(final Serie s, final boolean useTransaction ) throws DaoException {
 		try {
-			this.bdd.beginTransaction();
+			if (useTransaction) {
+				this.bdd.beginTransaction();
+			}
 			this.bdd.getEm().persist(s);
-			this.bdd.commitTransaction();
+			if (useTransaction) {
+				this.bdd.commitTransaction();
+			}
 			return s;
 		} catch (final PersistenceException e) {
 			this.bdd.rollbackTransaction();

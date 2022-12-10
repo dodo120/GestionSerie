@@ -23,7 +23,7 @@ public interface IEpisodeDao {
 	public List<Episode> readEpisodeBySaison(int idSaison) throws DaoException;
 
 	// Les méthodes d'écritures (d'édition)
-	public Episode createEpisode(Episode episode) throws DaoException;
+	public Episode createEpisode(Episode episode, final boolean useTransaction) throws DaoException;
 
 	public void updateEpisode(Episode episode, final boolean useTransaction) throws DaoException;
 

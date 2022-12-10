@@ -20,11 +20,11 @@ import javax.persistence.Table;
 
 import fr.pau.univ.series.exception.DaoException;
 
-//Ces annotations permettent d'indiquer que c'est une entité de notre BDD. Grâcee à JPA, nous pouvons utiliser ces annotations pour
-//que Java, Jakarta, etc. comprennet la connection classe Java <> Table SQL
+//Ces annotations permettent d'indiquer que c'est une entité de notre BDD. Grâce à JPA, nous pouvons utiliser ces annotations pour
+//que Java, Jakarta, etc. comprennent la connexion classe Java <> Table SQL
 //C'est pour cela que nous ajoutons @Entity et que nous expliquons le nom de la table avec @Table(name = "non_de_la_table")
 //Puis, nous ajoutons deux query SQL que nous nommons findById et findAll. La requête byId contient un argument identifiable par :id
-//Si une requête contient ':' puis le nom d'une varible, cela veut dire que se sera notre argument et qu'il prendra la valeur de la 
+//Si une requête contient ':' puis le nom d'une variable, cela veut dire que ce sera notre argument et qu'il prendra la valeur de la 
 //variable ID.
 @Entity
 @Table(name = "Saison")
@@ -108,7 +108,7 @@ public class Saison {
 	 * @return the saisons
 	 */
 	//Petite différence sur les annotations ici. Nous avons notre liste d'épisode de la série. Nous devons donc faire des références 
-	//à des épisodes dans notre BDD. Nous devons donc spécifier la relation (OneToMany ici car une saison contient plusieurs épisodes)
+	//à des épisodes dans notre BDD. Nous devons donc spécifier la relation (OneToMany ici, car une saison contient plusieurs épisodes)
 	//Et nous devons joindre les colonnes avec la ForeignKey fk_saison qui référence la colonne ID dans la table des épisodes.
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "fk_saison", referencedColumnName = "Id")
@@ -121,7 +121,7 @@ public class Saison {
 	}
 
 	//Nous devons être capable d'ajouter, modifier et supprimer des épisodes de notre liste d'épisode pour la saison depuis notre 
-	//projet (notre application). Les méthodes ci-dessous s'occupent de faire ces ajouts / suppression de notre liste episodes
+	//projet (notre application). Les méthodes ci-dessous s'occupent de faire ces ajouts / suppression de notre liste "episodes"
 	/**
 	 * This method adds given Episode to the list of Episodes.
 	 *

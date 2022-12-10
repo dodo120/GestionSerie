@@ -9,17 +9,19 @@ import javax.persistence.NamedQueries;
 import javax.persistence.NamedQuery;
 import javax.persistence.Table;
 
-//Ces annotations permettent d'indiquer que c'est une entité de notre BDD. Grâcee à JPA, nous pouvons utiliser ces annotations pour
-//que Java, Jakarta, etc. comprennet la connection classe Java <> Table SQL
+//Ces annotations permettent d'indiquer que c'est une entité de notre BDD. Grâce à JPA, nous pouvons utiliser ces annotations pour
+//que Java, Jakarta, etc. comprennent la connexion classe Java <> Table SQL
 //C'est pour cela que nous ajoutons @Entity et que nous expliquons le nom de la table avec @Table(name = "non_de_la_table")
 //Puis, nous ajoutons deux query SQL que nous nommons findById et findAll. La requête byId contient un argument identifiable par :id
-//Si une requête contient ':' puis le nom d'une varible, cela veut dire que se sera notre argument et qu'il prendra la valeur de la 
+//Si une requête contient ':' puis le nom d'une variable, cela veut dire que ce sera notre argument et qu'il prendra la valeur de la 
 //variable ID.
 @Entity
 @Table(name = "Episode")
 @NamedQueries({
 		@NamedQuery(name = "Episode.findById", query = "SELECT e FROM Episode e WHERE e.id = :id"),
-		@NamedQuery(name = "Episode.findAll", query = "SELECT e FROM Episode e")
+		@NamedQuery(name = "Episode.findAll", query = "SELECT e FROM Episode e"),
+		@NamedQuery(name = "Episode.findBySaison", query = "SELECT e FROM Saison sais, IN(sais.episodes) e WHERE sais.id = :id"),
+		@NamedQuery(name = "Episode.findBySerie", query = "SELECT e FROM Saison sais, IN(sais.episodes) e WHERE sais.id = ANY (SELECT sais FROM Serie ser WHERE :id = ser.id) ")
 })
 
 //Notre simple classe Java.
@@ -53,9 +55,9 @@ public class Episode {
 	/**
 	 * @return the id
 	 */
-	//Nous retrouvons des annotations ici pour signifier qu'il s'agit d'une tuple de notre requête. Iic nous faison la liaison entre
+	//Nous retrouvons des annotations ici pour signifier qu'il s'agit d'une colonne de notre requête. Ici, nous faisons la liaison entre
 	//la méthode getID et la variable de Id dans la BDD
-	//La méthode est légèrement complexe dans le sens ou nous explicons à Java, Jakarta, etc. que c'est un identifiant et que la génération
+	//La méthode est légèrement complexe dans le sens ou nous expliquons à Java, Jakarta, etc. que c'est un identifiant et que la génération
 	//est alors "automatique"
 	//C'est pour cela que nous devons expliquer la liaison à la colonne de la BDD avec @Id.
 	@Id

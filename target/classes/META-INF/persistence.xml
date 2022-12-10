@@ -8,11 +8,13 @@
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/gestionserie"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/gestionseries"/>
+			<!-- Veillez à changer votre nom d'utilisateur et mot de passe ici par ceux choisis dans PGAdmin!  -->
 			<property name="javax.persistence.jdbc.user" value="postgres"/>
-			<property name="javax.persistence.jdbc.password" value="master"/>
+			<property name="javax.persistence.jdbc.password" value="admin"/>
 			<property name="eclipselink.logging.level" value="FINE"/>
 		</properties>
 	</persistence-unit>
 	
 </persistence>
+

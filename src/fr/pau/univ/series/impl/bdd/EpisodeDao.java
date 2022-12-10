@@ -38,24 +38,30 @@ public class EpisodeDao implements IEpisodeDao {
 
 	@Override
 	public List<Episode> readEpisodeBySaison(int idSaison) {
-		// TODO Auto-generated method stub
-		return null;
+		TypedQuery<Episode> query = this.bdd.getEm().createNamedQuery("Episode.findBySaison", Episode.class);
+		query.setParameter("id", idSaison);
+		return query.getResultList();
 	}
 
 	@Override
-	public List<Episode> readEpisodeBySerie(int idSaison) {
-		// TODO Auto-generated method stub
-		return null;
+	public List<Episode> readEpisodeBySerie(int idSerie) {
+		TypedQuery<Episode> query = this.bdd.getEm().createNamedQuery("Episode.findBySaison", Episode.class);
+		query.setParameter("id", idSerie);
+		return query.getResultList();
 	}
 
 	//Méthodes d'édition des données.
 	
 	@Override
-	public Episode createEpisode(final Episode e) throws DaoException {
+	public Episode createEpisode(final Episode e, final boolean useTransaction) throws DaoException {
 		try {
-			this.bdd.beginTransaction();
+			if (useTransaction) {
+				this.bdd.beginTransaction();
+			}
 			this.bdd.getEm().persist(e);
-			this.bdd.commitTransaction();
+			if (useTransaction) {
+				this.bdd.commitTransaction();
+			}
 			return e;
 		} catch (final PersistenceException e1) {
 			this.bdd.rollbackTransaction();

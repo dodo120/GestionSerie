@@ -8,8 +8,8 @@ import java.util.List;
 import fr.pau.univ.series.exception.DaoException;
 
 //Grosse classe
-//Elle permet d'ajouter des données dans notre programme en dure sans s'ccouper des données du serveur SQL.
-//Elle devient obselète dès lors que nous utilisons les données de notre serveur SQL (donc que nous connectons notre serveur SQL)
+//Elle permet d'ajouter des données dans notre programme en dure sans s'occuper des données du serveur SQL.
+//Elle devient obsolète dès lors que nous utilisons les données de notre serveur SQL (donc que nous connectons notre serveur SQL)
 public class DataProvider {
 
 	private static DataProvider instance;

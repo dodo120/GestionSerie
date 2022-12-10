@@ -20,6 +20,13 @@ class DaoBddHelper {
 	 * @throws DaoException
 	 *
 	 */
+	
+	public enum PersistencyAction{
+		PERSIST,
+		MERGE,
+		REMOVE;
+	}
+	
 	public static final DaoBddHelper getInstance() throws DaoException {
 		if (instance == null) {
 			instance = new DaoBddHelper();

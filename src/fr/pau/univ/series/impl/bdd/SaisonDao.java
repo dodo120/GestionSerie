@@ -33,11 +33,23 @@ public class SaisonDao implements ISaisonDao {
 	}
 
 	@Override
-	public List<Saison> readSaisonBySerie(int idEpisode) throws DaoException {
-		// TODO Auto-generated method stub
+	public List<Saison> readSaisonBySerie(int idSaison) throws DaoException {
+		TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findBySerie", Saison.class);
+		query.setParameter("id", idSaison);
+		return query.getResultList();
+	}
+	
+	@Override
+	public Saison readSaisonByEpisode(int idEpisode) throws DaoException {
+		final TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findByEpisode", Saison.class);
+		query.setParameter("id", idEpisode);
+		final List<Saison> ret = query.getResultList();
+		if (ret.size() > 0) {
+			return ret.get(0);
+		}
 		return null;
 	}
-
+	
 	@Override
 	public List<Saison> readAllSaison() throws DaoException {
 		TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findAll", Saison.class);
@@ -47,11 +59,15 @@ public class SaisonDao implements ISaisonDao {
 	//Méthodes d'édition des données
 	
 	@Override
-	public Saison createSaison(final Saison s) throws DaoException {
+	public Saison createSaison(final Saison s, final boolean useTransaction ) throws DaoException {
 		try {
-			this.bdd.beginTransaction();
+			if (useTransaction) {
+				this.bdd.beginTransaction();
+			}
 			this.bdd.getEm().persist(s);
-			this.bdd.commitTransaction();
+			if (useTransaction) {
+				this.bdd.commitTransaction();
+			}
 			return s;
 		} catch (final PersistenceException e) {
 			this.bdd.rollbackTransaction();
