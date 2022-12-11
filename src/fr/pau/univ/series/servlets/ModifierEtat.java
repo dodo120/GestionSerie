@@ -14,6 +14,14 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/etat")
 public class ModifierEtat extends HttpServlet {
 
+	/**
+	 * Méthode qui gère les requêtes GET.
+	 * 
+	 * @param request Requête
+	 * @param response Réponse
+	 * @throws ServletException Si une erreur de servlet survient
+	 * @throws IOException Si une erreur d'entrée/sortie survient
+	 */
 	@Override
 	protected void doPost(final HttpServletRequest request, final HttpServletResponse response)
 			throws ServletException, IOException {

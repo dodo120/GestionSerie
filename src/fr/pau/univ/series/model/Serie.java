@@ -20,7 +20,6 @@ import javax.persistence.Table;
 
 import fr.pau.univ.series.exception.DaoException;
 
-
 //Ces annotations permettent d'indiquer que c'est une entité de notre BDD. Grâce à JPA, nous pouvons utiliser ces annotations pour
 //que Java, Jakarta, etc. comprennent la connexion classe Java <> Table SQL
 //C'est pour cela que nous ajoutons @Entity et que nous expliquons le nom de la table avec @Table(name = "non_de_la_table")
@@ -51,9 +50,12 @@ public class Serie {
 	 */
 	public Serie(final String nom) {
 		this.nom = nom;
-		setId(++DataProvider.lastSerieId);
+		// setId(++DataProvider.lastSerieId);
 	}
 
+	/**
+	 * Constructeur vide.
+	 */
 	public Serie() {
 		this.nom = "";
 	}
@@ -83,6 +85,9 @@ public class Serie {
 		return this.nom;
 	}
 
+	/**
+	 * @param nom the nom to set
+	 */
 	public final void setNom(String nom) {
 		this.nom = nom;
 	}
@@ -96,17 +101,19 @@ public class Serie {
 		return this.saisons;
 	}
 
+	/**
+	 * @param listeSaison the saisons to set
+	 */
 	public void setSaisons(List<Saison> listeSaison) {
 		this.saisons = listeSaison;
 	}
 
 	/**
-	 * This method adds given Saison to the list of Saisons.
+	 * Ajoute une saison à la liste des saisons.
 	 *
-	 * @param s The Saison to add. <b>note :</b>given Saison id is calculated before
-	 *          storing. No need to set it before calling this method.
-	 * @return the added Saison
-	 * @throws SeriesException if a Saison already exist with same id.
+	 * @param s la saison à ajouter.
+	 * @return la saison ajoutée.
+	 * @throws DaoException si la saison existe déjà.
 	 */
 	public Saison addSaison(final Saison s) throws DaoException {
 		this.saisons.add(s);
@@ -114,10 +121,10 @@ public class Serie {
 	}
 
 	/**
-	 * This method removes given Saison from the list of Saisons.
+	 * Supprime la saison de la liste des saisons.
 	 *
-	 * @param s the Saison to remove.
-	 * @throws SeriesException if given Saison doesn't exist in the list of Saisons.
+	 * @param s la saison à supprimer.
+	 * @throws DaoException si la saison n'existe pas.
 	 */
 	public void removeSaison(final Saison s) throws DaoException {
 		if (this.saisons.get(s.getId()) == null) {
@@ -134,11 +141,7 @@ public class Serie {
 	}
 
 	/**
-	 *
-	 * This method returns the visualization state of the Serie.
-	 *
-	 * @return <code>true</code> if all Saisons of the Serie have been fully
-	 *         watched, <code>false</code> otherwise.
+	 * @return <code>true</code> si toutes les Saisons de la Serie ont été
 	 */
 	public boolean isToutVu() {
 		this.toutVu = true;
@@ -154,12 +157,11 @@ public class Serie {
 	}
 
 	/**
-	 * This method return the Saison with given id.
+	 * Retourne la saison avec l'identifiant donné.
 	 *
-	 * @param id Identifier of Saison to return
-	 * @return the Saison with given id or <code>null</code> if no Saison exists
-	 *         with given Id.
-	 * @throws SeriesException in case season was not found.
+	 * @param id l'id de la saison à retourner.
+	 * @return la saison avec l'identifiant donné.
+	 * @throws DaoException si aucune saison n'a été trouvée avec l'identifiant
 	 */
 	public Saison getSaisonById(final int id) throws DaoException {
 		for (final Saison saison : this.saisons) {
@@ -170,6 +172,7 @@ public class Serie {
 		throw new DaoException("Aucune saison trouvée avec l'identifiant ".concat(Integer.toString(id)));
 	}
 
+	// Auto generated methods
 	@Override
 	public String toString() {
 		return getNom();

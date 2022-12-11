@@ -34,27 +34,27 @@ import fr.pau.univ.series.exception.DaoException;
 		@NamedQuery(name = "Saison.findByEpisode", query = "SELECT s FROM Saison s WHERE :id = ANY (SELECT e.id FROM s.episodes e)"),
 		@NamedQuery(name = "Saison.findBySerie", query = "SELECT sais FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = :id")
 })
-//Noter simple classe Java
+// Noter simple classe Java
 public class Saison {
 
-	//Nos attributs
-	private int id; //Notre id
-	private int numero; //Le numéro de la saison
-	private String nom; //Le nom de la saison
-	private boolean toutVu = false; //Tous les épisodes visionnés
-	private List<Episode> episodes = new ArrayList<>(); //La liste des épisodes de la saison
+	// Nos attributs
+	private int id; // Notre id
+	private int numero; // Le numéro de la saison
+	private String nom; // Le nom de la saison
+	private boolean toutVu = false; // Tous les épisodes visionnés
+	private List<Episode> episodes = new ArrayList<>(); // La liste des épisodes de la saison
 
-	//Constructor
+	// Constructor
 	/**
 	 * @param nom Nom de la saison.
 	 */
 	public Saison(final String nom, final int numero) {
 		this.nom = nom;
 		this.numero = numero;
-		setId(++DataProvider.lastSaisonId);
+		// setId(++DataProvider.lastSaisonId);
 	}
 
-	//Constructor vide
+	// Constructor vide
 	public Saison() {
 		this.nom = "";
 		this.numero = -1;
@@ -100,35 +100,46 @@ public class Saison {
 		return this.nom;
 	}
 
+	/**
+	 * @param nom the nom to set
+	 */
 	public final void setNom(String nom) {
 		this.nom = nom;
 	}
 
 	/**
-	 * @return the saisons
+	 * Petite différence sur les annotations ici. Nous avons notre liste d'épisode
+	 * de la série. Nous devons donc faire des références
+	 * à des épisodes dans notre BDD. Nous devons donc spécifier la relation
+	 * (OneToMany ici, car une saison contient plusieurs épisodes)
+	 * Et nous devons joindre les colonnes avec la ForeignKey fk_saison qui
+	 * référence la colonne ID dans la table des épisodes.
+	 *
+	 * @return retourne la liste des épisodes de la saison
 	 */
-	//Petite différence sur les annotations ici. Nous avons notre liste d'épisode de la série. Nous devons donc faire des références 
-	//à des épisodes dans notre BDD. Nous devons donc spécifier la relation (OneToMany ici, car une saison contient plusieurs épisodes)
-	//Et nous devons joindre les colonnes avec la ForeignKey fk_saison qui référence la colonne ID dans la table des épisodes.
 	@OneToMany(fetch = FetchType.EAGER, cascade = CascadeType.ALL, orphanRemoval = true)
 	@JoinColumn(name = "fk_saison", referencedColumnName = "Id")
 	public final List<Episode> getEpisodes() {
 		return this.episodes;
 	}
 
+	/**
+	 * @param listeEpisode la liste dse épisodes à ajouter pour la saison
+	 */
 	public final void setEpisodes(List<Episode> listeEpisode) {
 		this.episodes = listeEpisode;
 	}
 
-	//Nous devons être capable d'ajouter, modifier et supprimer des épisodes de notre liste d'épisode pour la saison depuis notre 
-	//projet (notre application). Les méthodes ci-dessous s'occupent de faire ces ajouts / suppression de notre liste "episodes"
 	/**
-	 * This method adds given Episode to the list of Episodes.
+	 * Nous devons être capable d'ajouter, modifier et supprimer des épisodes de
+	 * notre liste d'épisode pour la saison depuis notre
+	 * projet (notre application). Les méthodes ci-dessous s'occupent de faire ces
+	 * ajouts / suppression de notre liste "episodes"
+	 * Cette méthode permet d'ajouter un épisode à la liste d'épisode de la saison.
 	 *
-	 * @param e The Episode to add. <b>note :</b>given Episode id is calculated
-	 *          before storing. No need to set it before calling this method.
-	 * @return the added Episode
-	 * @throws SeriesException if a Episode already exist with same id.
+	 * @param e l'épisode à ajouter.
+	 * @return l'épisode ajouté.
+	 * @throws DaoException si l'épisode existe déjà.
 	 */
 	public Episode addEpisode(final Episode e) throws DaoException {
 		this.episodes.add(e);
@@ -136,11 +147,11 @@ public class Saison {
 	}
 
 	/**
-	 * This method removes given Episode from the list of Episodes.
+	 * Cette méthode permet de supprimer un épisode de la liste d'épisode de la
+	 * saison.
 	 *
-	 * @param e the Episode to remove.
-	 * @throws SeriesException if given Episode doesn't exist in the list of
-	 *                         Episodes.
+	 * @param e l'épisode à supprimer.
+	 * @throws DaoException si l'épisode n'existe pas.
 	 */
 	public void removeEpisode(final Episode e) throws DaoException {
 		if (this.episodes.get(e.getId()) == null) {
@@ -150,14 +161,19 @@ public class Saison {
 	}
 
 	/**
+	 * Cet attribut ne fait pas référence à une colonne de notre table. Il s'agit
+	 * d'une valeur définie par la liste des épisodes
+	 * par rapport à leur état vu.
+	 * 
 	 * @param toutVu the toutVu to set
 	 */
-	//Cet attribut ne fait pas référence à une colonne de notre table. Il s'agit d'une valeur définie par la liste des épisodes 
-	//par rapport à leur état vu.
 	public final void setToutVu(final boolean toutVu) {
 		this.toutVu = toutVu;
 	}
 
+	/**
+	 * @return the toutVu
+	 */
 	public boolean isToutVu() {
 		this.toutVu = true;
 		if (this.episodes.size() > 0) {
@@ -172,12 +188,12 @@ public class Saison {
 	}
 
 	/**
-	 * This method return the Episode with given id.
+	 * Cette méthode retourne un épisode de la saison en fonction de son
+	 * identifiant.
 	 *
-	 * @param id Identifier of Episode to return
-	 * @return the Episode with given id or <code>null</code> if no Episode exists
-	 *         with given Id.
-	 * @throws SeriesException in case of error
+	 * @param id L'identifiant de l'épisode à retourner.
+	 * @return L'épisode correspondant à l'identifiant.
+	 * @throws DaoException Si aucun épisode n'est trouvé avec l'identifiant
 	 */
 	public Episode getEpisodeById(final int id) throws DaoException {
 		for (final Episode ep : this.episodes) {
@@ -188,6 +204,7 @@ public class Saison {
 		throw new DaoException("Aucun épisode trouvé avec l'identifiant ".concat(Integer.toString(id)));
 	}
 
+	// Auto generated methods
 	@Override
 	public String toString() {
 		return getNom();

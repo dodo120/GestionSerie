@@ -18,12 +18,22 @@ import jakarta.servlet.http.HttpServletResponse;
 public class CreerSerie extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
-	/**
+	/** 
+	 * Le constructeur de la classe.
+	 * 
 	 * @see HttpServlet#HttpServlet()
 	 */
 	public CreerSerie() {
 	}
 
+	/**
+	 * Méthode qui gère les requêtes GET.
+	 * 
+	 * @param request La requête HTTP
+	 * @param response La réponse HTTP
+	 * @throws ServletException Si une erreur de servlet survient
+	 * @throws IOException Si une erreur d'entrée/sortie survient
+	 */
 	@Override
 	protected void doPost(final HttpServletRequest request, final HttpServletResponse response)
 			throws ServletException, IOException {

@@ -16,12 +16,23 @@ import jakarta.servlet.annotation.WebListener;
 public class SeriesContextListener implements ServletContextListener {
     private static EntityManager em;
 
+    /**
+     * Initialise l'entity manager factory à l'aide de la classe Persistence.
+     *
+     * @param sce ServletContextEvent
+     * @return instance de la classe EntityManagerFactory
+     */
     @Override
     public void contextInitialized(ServletContextEvent sce) {
         final EntityManagerFactory emf = Persistence.createEntityManagerFactory("GestionSeries");
         em = emf.createEntityManager();
     }
 
+    /**
+     * Ferme la connexion à l'entity manager factory.
+     *
+     * @param sce ServletContextEvent
+     */
     @Override
     public void contextDestroyed(ServletContextEvent sce) {
         if (em != null) {
@@ -29,6 +40,11 @@ public class SeriesContextListener implements ServletContextListener {
         }
     }
 
+    /**
+     * Getter pour récupérer l'entity manager.
+     *
+     * @return instance de la classe EntityManager
+     */
     public static EntityManager getEntityManager() {
         return em;
     }

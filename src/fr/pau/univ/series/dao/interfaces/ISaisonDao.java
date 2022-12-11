@@ -19,7 +19,7 @@ public interface ISaisonDao {
 	public List<Saison> readAllSaison() throws DaoException;
 
 	public List<Saison> readSaisonBySerie(int idSaison) throws DaoException;
-	
+
 	public Saison readSaisonByEpisode(int idEpisode) throws DaoException;
 
 	// Les méthodes d'écritures (d'édition)

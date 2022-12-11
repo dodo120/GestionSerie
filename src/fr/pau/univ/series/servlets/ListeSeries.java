@@ -13,6 +13,14 @@ import jakarta.servlet.http.HttpServletResponse;
 @WebServlet(urlPatterns = "/liste")
 public class ListeSeries extends HttpServlet {
 
+	/**
+	 * Méthode qui gère les requêtes GET.
+	 * 
+	 * @param request La requête HTTP
+	 * @param response La réponse HTTP
+	 * @throws ServletException Si une erreur de servlet survient
+	 * @throws IOException Si une erreur d'entrée/sortie survient
+	 */
 	@Override
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		try {

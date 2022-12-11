@@ -7,27 +7,36 @@ package fr.pau.univ.series.exception;
 //pour expliquer certaines choses intéressantes.
 public class DaoException extends Exception {
 
-	/**
-	 * 
-	 */
-
 	// Une exception a besoin d'un UID, un UID est un identifiant comme les
 	// programmes et utilisateurs sous UNIX.
 	private static final long serialVersionUID = 1L;
 
-	// Nous appelons cette méthode quand nous voulons juste envoyer un message.
+	/**
+	 * Nous appelons cette méthode quand nous voulons juste envoyer un message.
+	 * 
+	 * @param message Message à envoyer
+	 */
 	public DaoException(String message) {
 		super(message);
 	}
 
-	// Nous appelons cette méthode quand nous voulons juste renvoyer la cause de
-	// l'erreur.
+	/**
+	 * Nous appelons cette méthode quand nous voulons juste renvoyer la cause de
+	 * l'erreur.
+	 *
+	 * @param cause Cause de l'erreur
+	 */
 	public DaoException(Throwable cause) {
 		super(cause);
 	}
 
-	// Cette méthode est un mélange des deux précédents où nous pouvons renvoyer un
-	// message et la cause de l'erreur.
+	/**
+	 * Cette méthode est un mélange des deux précédents où nous pouvons renvoyer un
+	 * message et la cause de l'erreur.
+	 *
+	 * @param message Message à envoyer
+	 * @param cause   Cause de l'erreur
+	 */
 	public DaoException(String message, Throwable cause) {
 		super(message, cause);
 	}

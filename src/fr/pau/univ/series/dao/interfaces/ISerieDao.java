@@ -19,8 +19,8 @@ public interface ISerieDao {
 	public List<Serie> readAllSeries() throws DaoException;
 
 	public Serie readSerieBySaison(int idSaison) throws DaoException;
-	
-	public Serie readSerieByEpisode() throws DaoException;
+
+	public Serie readSerieByEpisode(int idEpisode) throws DaoException;
 
 	// Les méthodes d'écritures (d'édition)
 	public Serie createSerie(Serie serie, final boolean useTransaction) throws DaoException;

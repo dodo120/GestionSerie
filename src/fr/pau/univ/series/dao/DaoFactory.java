@@ -4,9 +4,9 @@ import fr.pau.univ.series.dao.interfaces.IEpisodeDao;
 import fr.pau.univ.series.dao.interfaces.ISaisonDao;
 import fr.pau.univ.series.dao.interfaces.ISerieDao;
 import fr.pau.univ.series.exception.DaoException;
-import fr.pau.univ.series.impl.bdd.EpisodeDao;
-import fr.pau.univ.series.impl.bdd.SaisonDao;
-import fr.pau.univ.series.impl.bdd.SerieDao;
+import fr.pau.univ.series.dao.impl.bdd.EpisodeDao;
+import fr.pau.univ.series.dao.impl.bdd.SaisonDao;
+import fr.pau.univ.series.dao.impl.bdd.SerieDao;
 
 //Un pattern DAO permet de facilement créer un lien entre "nos classes Java et notre BDD PostegreSQL"
 //Cette classe est de type Factory. Le pattern Factory permet d'avoir plusieurs classes abstraites qui auront chacune leurs 
@@ -24,11 +24,15 @@ public class DaoFactory {
 	private IEpisodeDao episodeDao = null;
 	private ISaisonDao saisonDao = null;
 
-	// Ici, nous implémentons le côté Singleton de cette classe.
-	// S'il n'y a pas d'instance déjà créée, nous ne créons une, sinon nous
-	// retournons l'instance déjà créée.
-	// Vous pouvez en apprendre plus sur le pattern Singleton ici :
-	// https://refactoring.guru/fr/design-patterns/singleton
+	/**
+	 * Ici, nous implémentons le côté Singleton de cette classe.
+	 * S'il n'y a pas d'instance déjà créée, nous ne créons une, sinon nous
+	 * retournons l'instance déjà créée.
+	 * Vous pouvez en apprendre plus sur le pattern Singleton ici :
+	 * https://refactoring.guru/fr/design-patterns/singleton
+	 *
+	 * @return instance de la classe DaoFactory
+	 */
 	public static DaoFactory getInstance() {
 		if (instance == null) {
 			instance = new DaoFactory();
@@ -36,9 +40,15 @@ public class DaoFactory {
 		return instance;
 	}
 
-	// Ici, le cas est le même que précédemment en incluant une clause try-catch pour
-	// attraper de potentielles erreurs pendant l'instanciation.
-	// De plus, cette méthode s'occupe seulement de la classe SerieDAO
+	/**
+	 * Ici, le cas est le même que précédemment en incluant une clause try-catch
+	 * pour
+	 * attraper de potentielles erreurs pendant l'instanciation.
+	 * De plus, cette méthode s'occupe seulement de la classe SerieDAO
+	 *
+	 * @return instance de la classe SerieDAO
+	 * @throws DaoException
+	 */
 	public ISerieDao getSerieDao() {
 		if (this.serieDao == null) {
 			try {
@@ -50,9 +60,15 @@ public class DaoFactory {
 		return this.serieDao;
 	}
 
-	// Ici, le cas est le même que précédemment en incluant une clause try-catch pour
-	// attraper de potentielles erreurs pendant l'instanciation.
-	// De plus, cette méthode s'occupe seulement de la classe SaisonDAO
+	/**
+	 * Ici, le cas est le même que précédemment en incluant une clause try-catch
+	 * pour
+	 * attraper de potentielles erreurs pendant l'instanciation.
+	 * De plus, cette méthode s'occupe seulement de la classe SaisonDAO
+	 *
+	 * @return instance de la classe SaisonDAO
+	 * @throws DaoException
+	 */
 	public ISaisonDao getSaisonDao() throws DaoException {
 		if (this.saisonDao == null) {
 			try {
@@ -64,9 +80,15 @@ public class DaoFactory {
 		return this.saisonDao;
 	}
 
-	// Ici, le cas est le même que précédemment en incluant une clause try-catch pour
-	// attraper de potentielles erreurs pendant l'instanciation.
-	// De plus, cette méthode s'occupe seulement de la classe EpisodeDAO
+	/**
+	 * Ici, le cas est le même que précédemment en incluant une clause try-catch
+	 * pour
+	 * attraper de potentielles erreurs pendant l'instanciation.
+	 * De plus, cette méthode s'occupe seulement de la classe EpisodeDAO
+	 *
+	 * @return instance de la classe EpisodeDAO
+	 * @throws DaoException
+	 */
 	public IEpisodeDao getEpisodeDao() throws DaoException {
 		if (this.episodeDao == null) {
 			try {

@@ -1,4 +1,4 @@
-package fr.pau.univ.series.impl.bdd;
+package fr.pau.univ.series.dao.impl.bdd;
 
 import java.util.List;
 
@@ -15,12 +15,24 @@ public class SaisonDao implements ISaisonDao {
 
 	private final DaoBddHelper bdd;
 
+	/**
+	 * Le constructeur de notre classe.
+	 * Essaye de récupérer une instance de la classe DaoBddHelper.
+	 * 
+	 * @throws DaoException
+	 */
 	public SaisonDao() throws DaoException {
 		this.bdd = DaoBddHelper.getInstance();
 	}
 
-	//Méthodes de lecture des données
-
+	// Méthodes de lecture des données
+	/**
+	 * Lecture de la saison correspondant à l'id passé en paramètre.
+	 * 
+	 * @param SaisonId
+	 * @return la saison correspondant à l'id passé en paramètre.
+	 * @throws DaoException
+	 */
 	@Override
 	public Saison readSaison(final int SaisonId) throws DaoException {
 		final TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findById", Saison.class);
@@ -32,13 +44,29 @@ public class SaisonDao implements ISaisonDao {
 		return null;
 	}
 
+	/**
+	 * Lecture des saisons de la série dont l'id est passé en paramètre.
+	 * 
+	 * @param idSerie
+	 * @return les saisons appartenant à la série dont l'id est passé en paramètre.
+	 * @throws DaoException
+	 */
 	@Override
-	public List<Saison> readSaisonBySerie(int idSaison) throws DaoException {
+	public List<Saison> readSaisonBySerie(int idSerie) throws DaoException {
 		TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findBySerie", Saison.class);
-		query.setParameter("id", idSaison);
+		query.setParameter("id", idSerie);
 		return query.getResultList();
 	}
-	
+
+	/**
+	 * Nous cherchons la saison correspondante à l'épisode dont l'id est passé en
+	 * paramètre.
+	 * 
+	 * @param idEpisode
+	 * @return la saison correspondante à l'épisode dont l'id est passé en
+	 *         paramètre.
+	 * @throws DaoException
+	 */
 	@Override
 	public Saison readSaisonByEpisode(int idEpisode) throws DaoException {
 		final TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findByEpisode", Saison.class);
@@ -49,17 +77,30 @@ public class SaisonDao implements ISaisonDao {
 		}
 		return null;
 	}
-	
+
+	/**
+	 * Lecture de toutes les saisons de la BDD.
+	 * 
+	 * @return les saisons de la BDD.
+	 * @throws DaoException
+	 */
 	@Override
 	public List<Saison> readAllSaison() throws DaoException {
 		TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findAll", Saison.class);
 		return query.getResultList();
 	}
-	
-	//Méthodes d'édition des données
-	
+
+	// Méthodes d'édition des données
+	/**
+	 * Création d'une saison dans la BDD.
+	 * 
+	 * @param s              la saison à créer.
+	 * @param useTransaction si vrai, on utilise une transaction.
+	 * @return la saison créée.
+	 * @throws DaoException
+	 */
 	@Override
-	public Saison createSaison(final Saison s, final boolean useTransaction ) throws DaoException {
+	public Saison createSaison(final Saison s, final boolean useTransaction) throws DaoException {
 		try {
 			if (useTransaction) {
 				this.bdd.beginTransaction();
@@ -75,6 +116,13 @@ public class SaisonDao implements ISaisonDao {
 		}
 	}
 
+	/**
+	 * Mise à jour d'une saison dans la BDD.
+	 * 
+	 * @param s              la saison à mettre à jour.
+	 * @param useTransaction si vrai, on utilise une transaction.
+	 * @throws DaoException
+	 */
 	@Override
 	public void updateSaison(final Saison s, final boolean useTransaction) throws DaoException {
 		try {
@@ -91,6 +139,13 @@ public class SaisonDao implements ISaisonDao {
 		}
 	}
 
+	/**
+	 * Suppression d'une saison dans la BDD.
+	 * 
+	 * @param s              la saison à supprimer.
+	 * @param useTransaction si vrai, on utilise une transaction.
+	 * @throws DaoException
+	 */
 	@Override
 	public void deleteSaison(Saison s, final boolean useTransaction) throws DaoException {
 		try {

@@ -1,4 +1,4 @@
-package fr.pau.univ.series.impl.bdd;
+package fr.pau.univ.series.dao.impl.bdd;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityTransaction;
@@ -13,20 +13,19 @@ class DaoBddHelper {
 	private static DaoBddHelper instance;
 	private final EntityManager em;
 
-	/**
-	 * Returns the instance of this singleton.
-	 *
-	 * @return the instance of this singleton.
-	 * @throws DaoException
-	 *
-	 */
-	
-	public enum PersistencyAction{
+	public enum PersistencyAction {
 		PERSIST,
 		MERGE,
 		REMOVE;
 	}
-	
+
+	/**
+	 * Retourne l'instance du singleton.
+	 *
+	 * @return l'insance du singleton.
+	 * @throws DaoException
+	 *
+	 */
 	public static final DaoBddHelper getInstance() throws DaoException {
 		if (instance == null) {
 			instance = new DaoBddHelper();
@@ -34,6 +33,13 @@ class DaoBddHelper {
 		return instance;
 	}
 
+	/**
+	 * Le constructeur de notre classe.
+	 * Essaye de récupérer une instance de l'entity manager.
+	 *
+	 * @throws DaoException
+	 *
+	 */
 	private DaoBddHelper() throws DaoException {
 		try {
 			this.em = SeriesContextListener.getEntityManager();
@@ -43,14 +49,26 @@ class DaoBddHelper {
 		}
 	}
 
+	/**
+	 * Le getter pour récupérer l'entity manager attaché à cette classe.
+	 *
+	 * @return l'entity manager.
+	 *
+	 */
 	public EntityManager getEm() {
 		return this.em;
 	}
 
+	/**
+	 * Lance une transaction SQL
+	 */
 	public void beginTransaction() {
 		this.em.getTransaction().begin();
 	}
 
+	/**
+	 * Commit la transaction SQL actuelle (si elle existe)
+	 */
 	public void commitTransaction() {
 		final EntityTransaction trans = this.em.getTransaction();
 		if (trans.isActive()) {
@@ -58,6 +76,9 @@ class DaoBddHelper {
 		}
 	}
 
+	/**
+	 * Abandonne les changements de la transaction SQL actuelle (si elle existe)
+	 */
 	public void rollbackTransaction() {
 		final EntityTransaction trans = this.em.getTransaction();
 		if (trans.isActive()) {
@@ -65,6 +86,14 @@ class DaoBddHelper {
 		}
 	}
 
+	/**
+	 * Permet de démarrer, envoyer ou abandonner une transaction selon les
+	 * paramètres.
+	 * 
+	 * @param obj      l'objet à persister
+	 * @param useTrans true si on veut utiliser une transaction, false sinon
+	 * @param action   l'action à effectuer (persist, merge ou remove)
+	 */
 	public void makePersistencyAction(Object obj, boolean useTrans, PersistencyAction action)
 			throws PersistenceException {
 		try {
