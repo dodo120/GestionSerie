@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/listerSeries")
+@WebServlet("/listerSeries")
 public class ListerSeries extends HttpServlet {
 
 	/**
@@ -24,7 +24,7 @@ public class ListerSeries extends HttpServlet {
 	@Override
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		try {
-			request.setAttribute("series", DaoFactory.getInstance().getSerieDao().readAllSeries());
+			request.setAttribute("Serie", DaoFactory.getInstance().getSerieDao().readAllSeries());
 		} catch (DaoException e) {
 			request.setAttribute("erreur", e.getMessage());
 			e.printStackTrace();

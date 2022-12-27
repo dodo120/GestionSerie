@@ -6,16 +6,16 @@
   </welcome-file-list>
   
 	<servlet>
-		<servlet-name>ListerSeries</servlet-name>
-		<servlet-class>org.glassfish.jersey.servlet.ServletContainer</servlet-class>
-		<init-param>
+		<servlet-name>ListeSeries</servlet-name>
+		<servlet-class>fr.pau.univ.series.servlets.ListerSeries</servlet-class>
+		<!-- <init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
 			<param-value>fr.pau.univ.series.services</param-value>
 		</init-param>
-		<load-on-startup>1</load-on-startup>
+		<load-on-startup>1</load-on-startup> -->
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ListerSeries</servlet-name>
+		<servlet-name>ListeSeries</servlet-name>
 		<url-pattern>/listerSeriesTest</url-pattern>
 	</servlet-mapping>
 	

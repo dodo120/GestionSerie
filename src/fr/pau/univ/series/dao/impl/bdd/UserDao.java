@@ -1,6 +1,7 @@
 package fr.pau.univ.series.dao.impl.bdd;
 
 import fr.pau.univ.series.exception.DaoException;
+import fr.pau.univ.series.model.User;
 
 public class UserDao {
 	private final DaoBddHelper bdd;
@@ -16,6 +17,6 @@ public class UserDao {
 	}
 	
 	public User readUserByLogin(String login) {
-		
+		return new User();
 	}
 }

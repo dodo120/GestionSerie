@@ -8,7 +8,6 @@ import javax.persistence.TypedQuery;
 import fr.pau.univ.series.dao.interfaces.IEpisodeDao;
 import fr.pau.univ.series.exception.DaoException;
 import fr.pau.univ.series.model.Episode;
-import jakarta.websocket.server.PathParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
 import jakarta.ws.rs.Produces;
@@ -41,7 +40,7 @@ public class EpisodeDao implements IEpisodeDao {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public Episode readEpisode(@PathParam("id") final int EpisodeId) throws DaoException {
+	public Episode readEpisode(@jakarta.ws.rs.PathParam("id") final int EpisodeId) throws DaoException {
 		final TypedQuery<Episode> query = this.bdd.getEm().createNamedQuery("Episode.findById", Episode.class);
 		query.setParameter("id", EpisodeId);
 		final List<Episode> ret = query.getResultList();
@@ -78,7 +77,7 @@ public class EpisodeDao implements IEpisodeDao {
 	@GET
 	@Path("/{id}")
 	@Produces(MediaType.APPLICATION_JSON)
-	public List<Episode> readEpisodeBySaison(@PathParam("id") int idSaison) {
+	public List<Episode> readEpisodeBySaison(@jakarta.ws.rs.PathParam("id") int idSaison) {
 		TypedQuery<Episode> query = this.bdd.getEm().createNamedQuery("Episode.findBySaison", Episode.class);
 		query.setParameter("id", idSaison);
 		return query.getResultList();

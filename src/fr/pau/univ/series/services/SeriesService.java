@@ -2,14 +2,12 @@ package fr.pau.univ.series.services;
 
 import java.util.Date;
 
-import org.apache.catalina.User;
-
 import fr.pau.univ.series.dao.DaoFactory;
 import fr.pau.univ.series.exception.DaoException;
 import fr.pau.univ.series.model.Serie;
-import jakarta.websocket.server.PathParam;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.Path;
+import jakarta.ws.rs.PathParam;
 import jakarta.ws.rs.Produces;
 import jakarta.ws.rs.core.GenericEntity;
 import jakarta.ws.rs.core.MediaType;
@@ -35,7 +33,7 @@ public class SeriesService {
 		}
 		
 		try {
-			final User usr = DaoFactory.getInstance().getUserDao().readUserByLogin(login);
+			final fr.pau.univ.series.model.User usr = DaoFactory.getInstance().getUserDao().readUserByLogin(login);
 			if (usr == null || !PasswordHelper.verifyUserPassword(pwd, usr.getPassword())) {
 			return Response.status(Response.Status.BAD_REQUEST)
 			.entity("Unknown user or bad password").build();
