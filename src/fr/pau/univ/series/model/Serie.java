@@ -35,9 +35,10 @@ import fr.pau.univ.series.exception.DaoException;
 @NamedQueries({
 		@NamedQuery(name = "Serie.findById", query = "SELECT ser FROM Serie ser WHERE ser.id = :id"),
 		@NamedQuery(name = "Serie.findAll", query = "SELECT ser FROM Serie ser"),
-		@NamedQuery(name = "Serie.findByEpisode", query = "SELECT ser FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = ANY ( SELECT ser.id FROM s.episodes e)"),
+		//@NamedQuery(name = "Serie.findByEpisode", query = "SELECT ser FROM Serie ser, IN(ser.saisons) sais WHERE ser.id = ANY ( SELECT ser.id FROM s.episodes e)"),
 		@NamedQuery(name = "Serie.findBySaison", query = "SELECT ser FROM Serie ser, IN(ser.saisons) sais WHERE sais.id = :id")
 })
+
 public class Serie {
 
 	private int id;

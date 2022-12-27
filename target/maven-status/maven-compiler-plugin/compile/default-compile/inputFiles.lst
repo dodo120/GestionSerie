@@ -1,18 +1,30 @@
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\impl\bdd\EpisodeDao.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\model\Saison.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\dao\interfaces\IEpisodeDao.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\dao\interfaces\ISerieDao.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\model\Episode.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\impl\bdd\DaoBddHelper.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\model\DataProvider.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\servlets\CreerEpisode.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\servlets\CreerSerie.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\dao\DaoFactory.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\impl\bdd\SerieDao.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\servlets\ListeSeries.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\servlets\ModifierEtat.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\dao\interfaces\ISaisonDao.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\dao\SeriesContextListener.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\model\Serie.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\impl\bdd\SaisonDao.java
-C:\Users\clem6\Bureau\Cours offline\Distributed systems\App1_git\GestionSeries\src\fr\pau\univ\series\exception\DaoException.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\ModifierEpisode.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\impl\bdd\SerieDao.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\CreerSerie.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\exception\DaoException.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\ListerSaison.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\interfaces\ISerieDao.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\model\Serie.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\SupprimerEpisode.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\services\PasswordHelper.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\ModifierSerie.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\interfaces\ISaisonDao.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\model\Saison.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\impl\bdd\UserDao.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\test.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\impl\bdd\DaoBddHelper.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\ListerSeries.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\DaoFactory.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\impl\bdd\EpisodeDao.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\services\SeriesService.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\SupprimerSaison.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\ListerEpisode.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\ModifierSaison.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\SupprimerSerie.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\SeriesContextListener.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\model\Episode.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\model\User.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\CreerEpisode.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\impl\bdd\SaisonDao.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\interfaces\IEpisodeDao.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\CreerSaison.java

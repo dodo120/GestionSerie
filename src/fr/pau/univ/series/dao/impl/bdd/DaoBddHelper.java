@@ -6,9 +6,12 @@ import javax.persistence.PersistenceException;
 
 import fr.pau.univ.series.dao.SeriesContextListener;
 import fr.pau.univ.series.exception.DaoException;
+import fr.pau.univ.series.model.Episode;
+import fr.pau.univ.series.model.Saison;
+import fr.pau.univ.series.model.Serie;
 
 //Cette classe simplifie la liaison entre notre projet, nos entités, notre base de données et l'entity manager. 
-class DaoBddHelper {
+public class DaoBddHelper {
 
 	private static DaoBddHelper instance;
 	private final EntityManager em;
@@ -120,6 +123,17 @@ class DaoBddHelper {
 			}
 			throw e;
 		}
+	}
+	
+	
+	public void addSerie(Serie s) {
+		
+	}
+	public void addSaison(Saison s) {
+		
+	}	
+	public void addEpisode(Episode e) {
+		
 	}
 
 }

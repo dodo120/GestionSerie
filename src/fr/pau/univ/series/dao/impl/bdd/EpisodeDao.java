@@ -8,7 +8,13 @@ import javax.persistence.TypedQuery;
 import fr.pau.univ.series.dao.interfaces.IEpisodeDao;
 import fr.pau.univ.series.exception.DaoException;
 import fr.pau.univ.series.model.Episode;
+import jakarta.websocket.server.PathParam;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
+@Path("/episode")
 public class EpisodeDao implements IEpisodeDao {
 
 	private final DaoBddHelper bdd;
@@ -32,7 +38,10 @@ public class EpisodeDao implements IEpisodeDao {
 	 * @throws DaoException
 	 */
 	@Override
-	public Episode readEpisode(final int EpisodeId) throws DaoException {
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Episode readEpisode(@PathParam("id") final int EpisodeId) throws DaoException {
 		final TypedQuery<Episode> query = this.bdd.getEm().createNamedQuery("Episode.findById", Episode.class);
 		query.setParameter("id", EpisodeId);
 		final List<Episode> ret = query.getResultList();
@@ -49,6 +58,9 @@ public class EpisodeDao implements IEpisodeDao {
 	 * @throws DaoException
 	 */
 	@Override
+	@GET
+	@Path("/all")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Episode> readAllEpisode() throws DaoException {
 		TypedQuery<Episode> query = this.bdd.getEm().createNamedQuery("Episode.findAll", Episode.class);
 		return query.getResultList();
@@ -63,7 +75,10 @@ public class EpisodeDao implements IEpisodeDao {
 	 * @throws DaoException
 	 */
 	@Override
-	public List<Episode> readEpisodeBySaison(int idSaison) {
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Episode> readEpisodeBySaison(@PathParam("id") int idSaison) {
 		TypedQuery<Episode> query = this.bdd.getEm().createNamedQuery("Episode.findBySaison", Episode.class);
 		query.setParameter("id", idSaison);
 		return query.getResultList();
