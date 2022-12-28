@@ -7,10 +7,10 @@
 <meta charset="UTF-8">
 <link type="text/css" rel="stylesheet" href="./inc/style.css" />
 <script type="text/javascript" src="./inc/GestionSeries.js"></script>
-<title>Mes épisodes</title>
+<title>Mes séries</title>
 </head>
 <body>
-	<h1>Mes épisodes</h1>
+	<h1>Mes séries</h1>
 	<span class="erreur"><c:out value="${erreur }" /></span>
 	<form method="post" id="newSerieForm" action="./creerSerie" onSubmit="return askSerieName()">
 		<input type=hidden name="nomNvlleSerie" id="nomNvlleSerie" />

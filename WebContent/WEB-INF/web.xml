@@ -6,7 +6,7 @@
   </welcome-file-list>
   
 	<servlet>
-		<servlet-name>ListeSeries</servlet-name>
+		<servlet-name>ListerSeries</servlet-name>
 		<servlet-class>fr.pau.univ.series.servlets.ListerSeries</servlet-class>
 		<!-- <init-param>
 			<param-name>jersey.config.server.provider.packages</param-name>
@@ -15,8 +15,22 @@
 		<load-on-startup>1</load-on-startup> -->
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ListeSeries</servlet-name>
-		<url-pattern>/listerSeriesTest</url-pattern>
+		<servlet-name>ListerSeries</servlet-name>
+		<url-pattern>/listerSeries</url-pattern>
+	</servlet-mapping>
+	
+	<servlet>
+		<servlet-name>ListeEpisode</servlet-name>
+		<servlet-class>fr.pau.univ.series.servlets.ListerEpisode</servlet-class>
+		<!-- <init-param>
+			<param-name>jersey.config.server.provider.packages</param-name>
+			<param-value>fr.pau.univ.series.services</param-value>
+		</init-param>
+		<load-on-startup>1</load-on-startup> -->
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ListeEpisode</servlet-name>
+		<url-pattern>/listerEpisode</url-pattern>
 	</servlet-mapping>
 	
 </web-app>

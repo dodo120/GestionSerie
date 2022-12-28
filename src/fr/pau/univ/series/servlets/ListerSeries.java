@@ -10,7 +10,7 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet("/listerSeries")
+@WebServlet("/listerSeries/")
 public class ListerSeries extends HttpServlet {
 
 	/**
@@ -29,6 +29,6 @@ public class ListerSeries extends HttpServlet {
 			request.setAttribute("erreur", e.getMessage());
 			e.printStackTrace();
 		}
-		this.getServletContext().getRequestDispatcher("/WebContent/ListeSeries.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/ListeSeries.jsp").forward(request, response);
 	}
 }
