@@ -3,7 +3,9 @@ package fr.pau.univ.series.servlets;
 import java.io.IOException;
 
 import fr.pau.univ.series.exception.DaoException;
+import fr.pau.univ.series.dao.DaoFactory;
 import fr.pau.univ.series.dao.impl.bdd.DaoBddHelper;
+import fr.pau.univ.series.model.Saison;
 import fr.pau.univ.series.model.Serie;
 import jakarta.servlet.ServletException;
 import jakarta.servlet.annotation.WebServlet;
@@ -14,17 +16,9 @@ import jakarta.servlet.http.HttpServletResponse;
 /**
  * Servlet implementation class ListeSeries
  */
-@WebServlet(urlPatterns = "/creerSerie")
+@WebServlet(urlPatterns = "/creerSerie/")
 public class CreerSerie extends HttpServlet {
-	private static final long serialVersionUID = 1L;
 
-	/** 
-	 * Le constructeur de la classe.
-	 * 
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public CreerSerie() {
-	}
 
 	/**
 	 * Méthode qui gère les requêtes GET.
@@ -40,13 +34,14 @@ public class CreerSerie extends HttpServlet {
 		final String nom = request.getParameter("nomNouvelleSerie");
 		if (nom != null && !nom.isBlank()) {
 			try {
-				DaoBddHelper.getInstance().addSerie(new Serie(nom));
+				DaoFactory.getInstance().getSerieDao().createSerie(new Serie(nom),true);
+				
 			} catch (final DaoException e) {
 				request.setAttribute("erreur", e.getMessage());
 			}
 		}
 		final String redir = "http://".concat(request.getServerName()).concat(":")
-				.concat(Integer.toString(request.getServerPort())).concat(request.getContextPath()).concat("/liste");
+				.concat(Integer.toString(request.getServerPort())).concat(request.getContextPath()).concat("/listerSeries");
 		response.sendRedirect(redir);
 	}
 

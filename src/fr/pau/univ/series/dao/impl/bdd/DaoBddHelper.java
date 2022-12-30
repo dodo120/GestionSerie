@@ -46,7 +46,6 @@ public class DaoBddHelper {
 	private DaoBddHelper() throws DaoException {
 		try {
 			this.em = SeriesContextListener.getEntityManager();
-			System.out.println("EntityManager créé.");
 		} catch (final Exception e) {
 			throw new DaoException("Impossible de créer l'EntityManager.", e);
 		}

@@ -96,7 +96,7 @@ public class Saison {
 	 * @return the nom
 	 */
 	@Column(name = "Nom", nullable = false)
-	public final String getNom() {
+	public String getNom() {
 		return this.nom;
 	}
 
@@ -174,7 +174,7 @@ public class Saison {
 	/**
 	 * @return the toutVu
 	 */
-	public boolean isToutVu() {
+	public final boolean isToutVu() {
 		this.toutVu = true;
 		if (this.episodes.size() > 0) {
 			for (final Episode e : this.episodes) {

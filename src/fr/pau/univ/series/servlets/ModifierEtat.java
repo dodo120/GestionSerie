@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/listerSaison")
-public class ListerSaison extends HttpServlet{
+@WebServlet(urlPatterns = "/etat/")
+ class ModifierEtat extends HttpServlet{
 	/**
 	 * Méthode qui gère les requêtes GET.
 	 * 
@@ -20,14 +20,5 @@ public class ListerSaison extends HttpServlet{
 	 * @throws ServletException Si une erreur de servlet survient
 	 * @throws IOException Si une erreur d'entrée/sortie survient
 	 */
-	@Override
-	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
-		try {
-			request.setAttribute("Saison", DaoFactory.getInstance().getSaisonDao().readAllSaison());
-		} catch (DaoException e) {
-			request.setAttribute("erreur", e.getMessage());
-			e.printStackTrace();
-		}
-		this.getServletContext().getRequestDispatcher("/ListeSeries.jsp").forward(request, response);
-	}
+	
 }

@@ -5,32 +5,66 @@
     <welcome-file>fr.pau.univ.series.servlets.ListerSeries</welcome-file>
   </welcome-file-list>
   
+  	<!-- Nos servlets de lécture des données (lister épisode et séries -->
+  	<!-- Notre servlet pour accéder à listerSeries -->
 	<servlet>
 		<servlet-name>ListerSeries</servlet-name>
 		<servlet-class>fr.pau.univ.series.servlets.ListerSeries</servlet-class>
-		<!-- <init-param>
-			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>fr.pau.univ.series.services</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup> -->
 	</servlet>
 	<servlet-mapping>
 		<servlet-name>ListerSeries</servlet-name>
 		<url-pattern>/listerSeries</url-pattern>
 	</servlet-mapping>
 	
+	<!-- Notre servlet pour accéder à listerEpisode -->
 	<servlet>
-		<servlet-name>ListeEpisode</servlet-name>
-		<servlet-class>fr.pau.univ.series.servlets.ListerEpisode</servlet-class>
-		<!-- <init-param>
-			<param-name>jersey.config.server.provider.packages</param-name>
-			<param-value>fr.pau.univ.series.services</param-value>
-		</init-param>
-		<load-on-startup>1</load-on-startup> -->
+		<servlet-name>ListerEpisodes</servlet-name>
+		<servlet-class>fr.pau.univ.series.servlets.ListerEpisodes</servlet-class>
 	</servlet>
 	<servlet-mapping>
-		<servlet-name>ListeEpisode</servlet-name>
-		<url-pattern>/listerEpisode</url-pattern>
+		<servlet-name>ListerEpisodes</servlet-name>
+		<url-pattern>/listerEpisodes</url-pattern>
 	</servlet-mapping>
 	
+	<!-- Nos servlets pour modification des données -->
+	<!-- Modification de l'état -->
+	<servlet>
+		<servlet-name>ModifierEtat</servlet-name>
+		<servlet-class>fr.pau.univ.series.servlets.ModifierEtat</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>ModifierEtat</servlet-name>
+		<url-pattern>/etat</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Servlet de création  -->
+	<!-- Création d'un nouvel épisode -->
+	<servlet>
+		<servlet-name>CreerEpisode</servlet-name>
+		<servlet-class>fr.pau.univ.series.servlets.CreerEpisode</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreerEpisode</servlet-name>
+		<url-pattern>/creerEpisode</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Création d'une nouvelle saison -->
+	<servlet>
+		<servlet-name>CreerSaison</servlet-name>
+		<servlet-class>fr.pau.univ.series.servlets.CreerSaison</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreerSaison</servlet-name>
+		<url-pattern>/creerSaison</url-pattern>
+	</servlet-mapping>
+	
+	<!-- Création d'une nouvelle série-->
+	<servlet>
+		<servlet-name>CreerSerie</servlet-name>
+		<servlet-class>fr.pau.univ.series.servlets.CreerSerie</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>CreerSerie</servlet-name>
+		<url-pattern>/creerSerie</url-pattern>
+	</servlet-mapping>
 </web-app>

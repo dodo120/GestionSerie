@@ -1,12 +1,10 @@
 fr\pau\univ\series\model\Serie.class
 fr\pau\univ\series\services\PasswordHelper.class
-fr\pau\univ\series\servlets\ListerSaison.class
+fr\pau\univ\series\servlets\ModifierEtat.class
 fr\pau\univ\series\dao\impl\bdd\DaoBddHelper$PersistencyAction.class
 fr\pau\univ\series\dao\impl\bdd\DaoBddHelper$1.class
 fr\pau\univ\series\dao\impl\bdd\DaoBddHelper.class
-fr\pau\univ\series\servlets\ModifierSerie.class
 fr\pau\univ\series\exception\DaoException.class
 fr\pau\univ\series\model\Saison.class
-fr\pau\univ\series\servlets\ModifierEpisode.class
 fr\pau\univ\series\model\Episode.class
 fr\pau\univ\series\servlets\SupprimerSerie.class

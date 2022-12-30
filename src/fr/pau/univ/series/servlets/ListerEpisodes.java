@@ -10,8 +10,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/listerEpisode/")
-public class ListerEpisode extends HttpServlet{
+@WebServlet(urlPatterns = "/listerEpisodes/")
+public class ListerEpisodes extends HttpServlet{
 	/**
 	 * Méthode qui gère les requêtes GET.
 	 * 

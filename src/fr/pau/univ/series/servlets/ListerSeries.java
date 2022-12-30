@@ -24,11 +24,11 @@ public class ListerSeries extends HttpServlet {
 	@Override
 	public void doGet(final HttpServletRequest request, final HttpServletResponse response) throws ServletException, IOException {
 		try {
-			request.setAttribute("Serie", DaoFactory.getInstance().getSerieDao().readAllSeries());
+			request.setAttribute("series", DaoFactory.getInstance().getSerieDao().readAllSeries());
 		} catch (DaoException e) {
 			request.setAttribute("erreur", e.getMessage());
 			e.printStackTrace();
 		}
-		this.getServletContext().getRequestDispatcher("/ListeSeries.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/ListerSeries.jsp").forward(request, response);
 	}
 }

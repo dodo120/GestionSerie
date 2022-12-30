@@ -23,7 +23,7 @@
 			<tr>
 				<td colspan="3" class="${serie.toutVu } Serie">${serie.nom}</td>
 				<td class="${serie.toutVu }">
-					<form method="post" action="./creerSaison">
+					<form method="post" id="newSaisonForm" action="./creerSaison" onSubmit="return askSaisonName()">
 						<input type="hidden" name="serie" value="${serie.id}" />
 						<button type="submit" title="Créer une nouvelle saison">
 							<img src="./img/Add.png">
@@ -42,7 +42,7 @@
 					<td class="filler">&nbsp;</td>
 					<td class="${saison.toutVu } Saison" colspan="2">Saison N°${saison.numero}</td>
 					<td class="${saison.toutVu }">
-						<form method="post" action="./creerEpisode" onSubmit="return askEpisodeName('${serie.id}',${saison.id})">
+						<form method="post" action="./creerEpisode" id="newEpisodeName" onSubmit="return askEpisodeName('${serie.id}',${saison.id})">
 							<input type="hidden" name="serie" value="${serie.id}" />
 							<input type="hidden" name="saison" value="${saison.id}" />
 							<input type=hidden name="nomEpisode" id="${serie.id}${saison.id}" />

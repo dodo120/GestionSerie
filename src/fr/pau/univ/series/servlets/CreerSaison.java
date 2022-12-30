@@ -2,8 +2,10 @@ package fr.pau.univ.series.servlets;
 
 import java.io.IOException;
 
+import fr.pau.univ.series.dao.DaoFactory;
 import fr.pau.univ.series.dao.impl.bdd.DaoBddHelper;
 import fr.pau.univ.series.exception.DaoException;
+import fr.pau.univ.series.model.Episode;
 import fr.pau.univ.series.model.Saison;
 import fr.pau.univ.series.model.Serie;
 import jakarta.servlet.ServletException;
@@ -12,18 +14,10 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/creerSaison")
+@WebServlet(urlPatterns = "/creerSaison/")
 public class CreerSaison extends HttpServlet
 {
-	private static final long serialVersionUID = 1L;
-
-	/** 
-	 * Le constructeur de la classe.
-	 * 
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public CreerSaison() {
-	}
+	
 
 	/**
 	 * Méthode qui gère les requêtes GET.
@@ -38,15 +32,17 @@ public class CreerSaison extends HttpServlet
 			throws ServletException, IOException {
 		final String nom = request.getParameter("nomNouvelleSaison");
 		final String numero = request.getParameter("numeroNouvelleSaison");
+		System.out.print("New serie added");
 		if ((nom != null && !nom.isBlank())&&(numero != null && !numero.isBlank())) {
 			try {
-				DaoBddHelper.getInstance().addSaison(new Saison(nom,Integer.parseInt(numero)));
+				DaoFactory.getInstance().getSaisonDao().createSaison(new Saison(nom,Integer.parseInt(numero)),true);
+				System.out.print("New serie added");
 			} catch (final DaoException e) {
 				request.setAttribute("erreur", e.getMessage());
 			}
 		}
 		final String redir = "http://".concat(request.getServerName()).concat(":")
-				.concat(Integer.toString(request.getServerPort())).concat(request.getContextPath()).concat("/liste");
+				.concat(Integer.toString(request.getServerPort())).concat(request.getContextPath()).concat("/listerSeries");
 		response.sendRedirect(redir);
 	}
 }

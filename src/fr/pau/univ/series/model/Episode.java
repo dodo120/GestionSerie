@@ -21,7 +21,7 @@ import javax.persistence.Table;
 		@NamedQuery(name = "Episode.findById", query = "SELECT e FROM Episode e WHERE e.id = :id"),
 		@NamedQuery(name = "Episode.findAll", query = "SELECT e FROM Episode e"),
 		@NamedQuery(name = "Episode.findBySaison", query = "SELECT e FROM Saison sais, IN(sais.episodes) e WHERE sais.id = :id"),
-		@NamedQuery(name = "Episode.findBySerie", query = "SELECT e FROM Saison sais, IN(sais.episodes) e WHERE sais.id = ANY (SELECT sais FROM Serie ser WHERE :id = ser.id) ")
+		@NamedQuery(name = "Episode.findBySerie", query = "SELECT e FROM Saison sais, IN(sais.episodes) e WHERE sais.id = ANY (SELECT sais FROM Serie ser WHERE :id = ser.id)")
 })
 
 // Notre simple classe Java.

@@ -2,6 +2,7 @@ package fr.pau.univ.series.servlets;
 
 import java.io.IOException;
 
+import fr.pau.univ.series.dao.DaoFactory;
 import fr.pau.univ.series.dao.impl.bdd.DaoBddHelper;
 import fr.pau.univ.series.exception.DaoException;
 import fr.pau.univ.series.model.Episode;
@@ -12,17 +13,8 @@ import jakarta.servlet.http.HttpServlet;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.servlet.http.HttpServletResponse;
 
-@WebServlet(urlPatterns = "/creerEpisode")
+@WebServlet(urlPatterns = "/creerEpisode/")
 public class CreerEpisode extends HttpServlet{
-	private static final long serialVersionUID = 1L;
-
-	/** 
-	 * Le constructeur de la classe.
-	 * 
-	 * @see HttpServlet#HttpServlet()
-	 */
-	public CreerEpisode() {
-	}
 
 	/**
 	 * Méthode qui gère les requêtes GET.
@@ -35,17 +27,22 @@ public class CreerEpisode extends HttpServlet{
 	@Override
 	protected void doPost(final HttpServletRequest request, final HttpServletResponse response)
 			throws ServletException, IOException {
+		
 		final String nom = request.getParameter("nomNouvelEpisode");
 		final String numero = request.getParameter("numeroNouvelEpisode");
+		
+		System.out.print(nom);
+
 		if ((nom != null && !nom.isBlank())&&(numero != null && !numero.isBlank())) {
 			try {
-				DaoBddHelper.getInstance().addEpisode(new Episode(nom,Integer.parseInt(numero)));
+				System.out.print("creerEpisode");
+				DaoFactory.getInstance().getEpisodeDao().createEpisode(new Episode(nom,Integer.parseInt(numero)),true);
 			} catch (final DaoException e) {
 				request.setAttribute("erreur", e.getMessage());
 			}
 		}
 		final String redir = "http://".concat(request.getServerName()).concat(":")
-				.concat(Integer.toString(request.getServerPort())).concat(request.getContextPath()).concat("/liste");
+				.concat(Integer.toString(request.getServerPort())).concat(request.getContextPath()).concat("/listerSeries");
 		response.sendRedirect(redir);
 	}
 
