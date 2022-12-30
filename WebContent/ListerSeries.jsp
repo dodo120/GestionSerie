@@ -46,6 +46,7 @@
 							<input type="hidden" name="serie" value="${serie.id}" />
 							<input type="hidden" name="saison" value="${saison.id}" />
 							<input type=hidden name="nomEpisode" id="${serie.id}${saison.id}" />
+							
 							<button type="submit" title="Créer un nouvel épisode">
 								<img src="./img/Add.png">
 							</button>

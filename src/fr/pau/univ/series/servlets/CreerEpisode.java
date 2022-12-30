@@ -31,7 +31,6 @@ public class CreerEpisode extends HttpServlet{
 		final String nom = request.getParameter("nomNouvelEpisode");
 		final String numero = request.getParameter("numeroNouvelEpisode");
 		
-		System.out.print(nom);
 
 		if ((nom != null && !nom.isBlank())&&(numero != null && !numero.isBlank())) {
 			try {
