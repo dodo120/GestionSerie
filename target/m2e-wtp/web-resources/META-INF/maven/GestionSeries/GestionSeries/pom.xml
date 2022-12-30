@@ -42,35 +42,6 @@
 	    <artifactId>eclipselink</artifactId>
 	    <version>2.5.2</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.containers/jersey-container-servlet-core -->
-	<dependency>
-	    <groupId>org.glassfish.jersey.containers</groupId>
-	    <artifactId>jersey-container-servlet-core</artifactId>
-	    <version>3.1.0</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.inject/jersey-hk2 -->
-	<dependency>
-	    <groupId>org.glassfish.jersey.inject</groupId>
-	    <artifactId>jersey-hk2</artifactId>
-	    <version>3.1.0</version>
-	</dependency>
-	<dependency>
-	    <groupId>org.glassfish.jersey.containers</groupId>
-	    <artifactId>jersey-container-servlet</artifactId>
-	    <version>3.0.2</version>
-	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.glassfish.jersey.media/jersey-media-json-jackson -->
-	<dependency>
-	    <groupId>org.glassfish.jersey.media</groupId>
-	    <artifactId>jersey-media-json-jackson</artifactId>
-	    <version>3.1.0</version>
-	</dependency>
-	<dependency>
-		<groupId>io.jsonwebtoken</groupId>
-		<artifactId>jjwt</artifactId>
-		<version>0.9.1</version>
-	</dependency>
-	
 
 </dependencies>
 
