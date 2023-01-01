@@ -19,6 +19,9 @@ import jakarta.xml.bind.DatatypeConverter;
 
 @Path("/users")
 public class UserService {
+	private static final long TOKEN_LIFETIME_MS = 60000;
+	private static final String SECRET_API_KEY = "1234";
+
 	public Response autenticateUser(final MultivaluedMap<String, String> formParams) {
 		if (formParams.get("user") == null || formParams.get("pwd") == null) {
 			return Response.status(Response.Status.BAD_REQUEST)
@@ -53,8 +56,8 @@ public class UserService {
 		final String id = UUID.randomUUID().toString();
 		final JwtBuilder builder = Jwts.builder().setId(id)
 		.setIssuedAt(now)
-		.setSubject(user.getRole().name())
-		.setIssuer(user.getLogin()).signWith(signatureAlgorithm, signingKey);
+		.setSubject(user.getUsername())
+		.setIssuer(user.getUsername()).signWith(signatureAlgorithm, signingKey);
 		final long expMillis = nowMillis + ttlMillis;
 		final Date exp = new Date(expMillis);
 		builder.setExpiration(exp);
