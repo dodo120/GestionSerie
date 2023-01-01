@@ -7,7 +7,6 @@ import fr.pau.univ.series.exception.DaoException;
 import fr.pau.univ.series.dao.impl.bdd.EpisodeDao;
 import fr.pau.univ.series.dao.impl.bdd.SaisonDao;
 import fr.pau.univ.series.dao.impl.bdd.SerieDao;
-import fr.pau.univ.series.dao.impl.bdd.UserDao;
 
 //Un pattern DAO permet de facilement créer un lien entre "nos classes Java et notre BDD PostegreSQL"
 //Cette classe est de type Factory. Le pattern Factory permet d'avoir plusieurs classes abstraites qui auront chacune leurs 
@@ -24,7 +23,6 @@ public class DaoFactory {
 	private ISerieDao serieDao = null;
 	private IEpisodeDao episodeDao = null;
 	private ISaisonDao saisonDao = null;
-	private UserDao userDao = null;
 
 	/**
 	 * Ici, nous implémentons le côté Singleton de cette classe.
@@ -100,17 +98,6 @@ public class DaoFactory {
 			}
 		}
 		return this.episodeDao;
-	}
-	
-	public UserDao getUserDao() throws DaoException{
-		if (this.userDao == null) {
-			try {
-				this.userDao = new UserDao();
-			} catch (DaoException e) {
-				e.printStackTrace();
-			}
-		}
-		return this.userDao;
 	}
 
 }

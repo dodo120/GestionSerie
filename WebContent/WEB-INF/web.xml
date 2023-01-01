@@ -67,4 +67,37 @@
 		<servlet-name>CreerSerie</servlet-name>
 		<url-pattern>/creerSerie</url-pattern>
 	</servlet-mapping>
+	
+	<!-- Servlet de création  -->
+	<!--  Suppression d'un épisode -->
+	<servlet>
+		<servlet-name>SupprimerEpisode</servlet-name>
+		<servlet-class>fr.pau.univ.series.servlets.SupprimerEpisode</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SupprimerEpisode</servlet-name>
+		<url-pattern>/supprimerEpisode</url-pattern>
+	</servlet-mapping>
+	
+	<!--  Suppression d'un épisode -->
+	<servlet>
+		<servlet-name>SupprimerSaison</servlet-name>
+		<servlet-class>fr.pau.univ.series.servlets.SupprimerSaison</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SupprimerSaison</servlet-name>
+		<url-pattern>/saisonSerie</url-pattern>
+	</servlet-mapping>
+	
+	<!--  Suppression d'une série -->
+	<servlet>
+		<servlet-name>SupprimerSerie</servlet-name>
+		<servlet-class>fr.pau.univ.series.servlets.SupprimerSerie</servlet-class>
+	</servlet>
+	<servlet-mapping>
+		<servlet-name>SupprimerSerie</servlet-name>
+		<url-pattern>/supprimerSerie</url-pattern>
+	</servlet-mapping>
+	
+	
 </web-app>
