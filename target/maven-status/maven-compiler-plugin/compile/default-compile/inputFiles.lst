@@ -14,6 +14,7 @@ C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\ser
 C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\DaoFactory.java
 C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\impl\bdd\EpisodeDao.java
 C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\services\SeriesService.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\services\SeriesServiceOld.java
 C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\SupprimerSaison.java
 C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\SupprimerSerie.java
 C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\SeriesContextListener.java
@@ -23,4 +24,5 @@ C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\ser
 C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\CreerEpisode.java
 C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\impl\bdd\SaisonDao.java
 C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\dao\interfaces\IEpisodeDao.java
+C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\services\EpisodesService.java
 C:\Users\clem6\git\M1-2022-distributed_systems-GestionSeries\src\fr\pau\univ\series\servlets\CreerSaison.java

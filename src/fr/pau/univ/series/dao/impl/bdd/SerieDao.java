@@ -8,9 +8,14 @@ import javax.persistence.TypedQuery;
 import fr.pau.univ.series.dao.interfaces.ISerieDao;
 import fr.pau.univ.series.exception.DaoException;
 import fr.pau.univ.series.model.Serie;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
 //Cette classe respecte le pattern DAO et implémente son interface ISerieDAO.
 //Elle permet de faire le lien entre notre entité (classe) Serie et notre table des séries dans la BDD.
+
 public class SerieDao implements ISerieDao {
 
 	private final DaoBddHelper bdd;
@@ -64,7 +69,7 @@ public class SerieDao implements ISerieDao {
 	 * @throws DaoException
 	 */
 	@Override
-	public Serie readSerieBySaison(int idSaison) {
+	public Serie readSerieBySaison(final int idSaison) {
 		final TypedQuery<Serie> query = this.bdd.getEm().createNamedQuery("Serie.findBySaison", Serie.class);
 		query.setParameter("id", idSaison);
 		final List<Serie> ret = query.getResultList();
@@ -82,7 +87,7 @@ public class SerieDao implements ISerieDao {
 	 * @throws DaoException
 	 */
 	@Override
-	public Serie readSerieByEpisode(int idEpisode) throws DaoException {
+	public Serie readSerieByEpisode(final int idEpisode) throws DaoException {
 		TypedQuery<Serie> query = this.bdd.getEm().createNamedQuery("Serie.findByEpisode", Serie.class);
 		query.setParameter("id", idEpisode);
 		final List<Serie> ret = query.getResultList();

@@ -8,9 +8,14 @@ import javax.persistence.TypedQuery;
 import fr.pau.univ.series.dao.interfaces.ISaisonDao;
 import fr.pau.univ.series.exception.DaoException;
 import fr.pau.univ.series.model.Saison;
+import jakarta.ws.rs.GET;
+import jakarta.ws.rs.Path;
+import jakarta.ws.rs.Produces;
+import jakarta.ws.rs.core.MediaType;
 
 //Cette classe respecte le pattern DAO et implémente son interface IESaisonDAO.
 //Elle permet de faire le lien entre notre entité (classe) Saison et notre table des saisons dans la BDD.
+@Path("/saison")
 public class SaisonDao implements ISaisonDao {
 
 	private final DaoBddHelper bdd;
@@ -34,7 +39,10 @@ public class SaisonDao implements ISaisonDao {
 	 * @throws DaoException
 	 */
 	@Override
-	public Saison readSaison(final int SaisonId) throws DaoException {
+	@GET
+	@Path("/{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Saison readSaison(@jakarta.ws.rs.PathParam("id") final int SaisonId) throws DaoException {
 		final TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findById", Saison.class);
 		query.setParameter("id", SaisonId);
 		final List<Saison> ret = query.getResultList();
@@ -52,7 +60,10 @@ public class SaisonDao implements ISaisonDao {
 	 * @throws DaoException
 	 */
 	@Override
-	public List<Saison> readSaisonBySerie(int idSerie) throws DaoException {
+	@GET
+	@Path("/bySerie{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public List<Saison> readSaisonBySerie(@jakarta.ws.rs.PathParam("id") int idSerie) throws DaoException {
 		TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findBySerie", Saison.class);
 		query.setParameter("id", idSerie);
 		return query.getResultList();
@@ -68,7 +79,10 @@ public class SaisonDao implements ISaisonDao {
 	 * @throws DaoException
 	 */
 	@Override
-	public Saison readSaisonByEpisode(int idEpisode) throws DaoException {
+	@GET
+	@Path("/byEpisode{id}")
+	@Produces(MediaType.APPLICATION_JSON)
+	public Saison readSaisonByEpisode(@jakarta.ws.rs.PathParam("id") int idEpisode) throws DaoException {
 		final TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findByEpisode", Saison.class);
 		query.setParameter("id", idEpisode);
 		final List<Saison> ret = query.getResultList();
@@ -85,6 +99,9 @@ public class SaisonDao implements ISaisonDao {
 	 * @throws DaoException
 	 */
 	@Override
+	@GET
+	@Path("/all")
+	@Produces(MediaType.APPLICATION_JSON)
 	public List<Saison> readAllSaison() throws DaoException {
 		TypedQuery<Saison> query = this.bdd.getEm().createNamedQuery("Saison.findAll", Saison.class);
 		return query.getResultList();
