@@ -5,6 +5,7 @@ import java.util.List;
 import fr.pau.univ.series.dao.DaoFactory;
 import fr.pau.univ.series.exception.DaoException;
 import fr.pau.univ.series.model.Episode;
+import fr.pau.univ.series.model.Saison;
 import jakarta.ws.rs.Consumes;
 import jakarta.ws.rs.GET;
 import jakarta.ws.rs.POST;
@@ -125,7 +126,30 @@ public class EpisodesService {
 	@Path("/add")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addEpisode(final MultivaluedMap<String, String> formParams) {
-		return null;
+		if (formParams.get("titre") == null || formParams.get("numero") == null ||
+		formParams.get("saisonId") == null) {
+			return Response.status(Response.Status.BAD_REQUEST).entity("Invalid parameters").build();
+		} else {
+				Saison s = null;
+			try {
+				s = DaoFactory.getInstance().getSaisonDao()
+						.readSaison(Integer.parseInt(formParams.getFirst("saisonId")));
+			} catch (final DaoException e) {
+				return Response.status(Response.Status.INTERNAL_SERVER_ERROR)
+				.entity(e.getMessage()).build();
+			} catch (final NumberFormatException e) {
+				return Response.status(Response.Status.BAD_REQUEST)
+				.entity("saisonId must be an intger").build();
+			}
+			if (s == null) {
+				return Response.status(Response.Status.NOT_FOUND)
+				.entity("Parent season not found").build();
+			}
+		// Suite de la méthode avec statut CREATED si OK, INTERNAL_SERVER_ERROR sinon
+			return Response.status(Response.Status.CREATED)
+					.entity("Episode created").build();
+		}
 	}
+
 	
 }

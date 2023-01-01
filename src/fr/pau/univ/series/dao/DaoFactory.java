@@ -3,6 +3,7 @@ package fr.pau.univ.series.dao;
 import fr.pau.univ.series.dao.interfaces.IEpisodeDao;
 import fr.pau.univ.series.dao.interfaces.ISaisonDao;
 import fr.pau.univ.series.dao.interfaces.ISerieDao;
+import fr.pau.univ.series.dao.interfaces.IUserDao;
 import fr.pau.univ.series.exception.DaoException;
 import fr.pau.univ.series.dao.impl.bdd.EpisodeDao;
 import fr.pau.univ.series.dao.impl.bdd.SaisonDao;
@@ -24,7 +25,7 @@ public class DaoFactory {
 	private ISerieDao serieDao = null;
 	private IEpisodeDao episodeDao = null;
 	private ISaisonDao saisonDao = null;
-	private UserDao userDao = null;
+	private IUserDao userDao = null;
 
 	/**
 	 * Ici, nous implémentons le côté Singleton de cette classe.
@@ -102,7 +103,7 @@ public class DaoFactory {
 		return this.episodeDao;
 	}
 	
-	public UserDao getUserDao() throws DaoException{
+	public IUserDao getUserDao() throws DaoException{
 		if (this.userDao == null) {
 			try {
 				this.userDao = new UserDao();
