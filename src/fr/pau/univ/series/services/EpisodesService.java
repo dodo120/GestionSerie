@@ -145,7 +145,7 @@ public class EpisodesService {
 				return Response.status(Response.Status.NOT_FOUND)
 				.entity("Parent season not found").build();
 			}
-		// Suite de la méthode avec statut CREATED si OK, INTERNAL_SERVER_ERROR sinon
+			// Suite de la méthode avec statut CREATED si OK, INTERNAL_SERVER_ERROR sinon
 			return Response.status(Response.Status.CREATED)
 					.entity("Episode created").build();
 		}

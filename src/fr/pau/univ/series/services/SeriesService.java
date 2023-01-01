@@ -127,6 +127,7 @@ public class SeriesService {
 	@Path("/add")
 	@Produces(MediaType.APPLICATION_JSON)
 	public Response addSerie(final MultivaluedMap<String, String> formParams) {
+		//TODO: à implémenter plus tard.
 		return null;
 	}
 	
