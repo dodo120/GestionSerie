@@ -5,14 +5,13 @@
 		<class>fr.pau.univ.series.model.Episode</class>
 		<class>fr.pau.univ.series.model.Saison</class>
 		<class>fr.pau.univ.series.model.Serie</class>
-		<class>fr.pau.univ.series.model.User</class>
 		<exclude-unlisted-classes>true</exclude-unlisted-classes>
 		<properties>
 			<property name="javax.persistence.jdbc.driver" value="org.postgresql.Driver"/>
-			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5432/gestionseries"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:postgresql://localhost:5433/gestionserie"/>
 			<!-- Attention de bien changer votre nom d'utilisateur et mot de passe ici par ceux choisis dans PGAdmin!  -->
 			<property name="javax.persistence.jdbc.user" value="postgres"/>
-			<property name="javax.persistence.jdbc.password" value="40c275410B"/>
+			<property name="javax.persistence.jdbc.password" value=""/>
 			<property name="eclipselink.logging.level" value="FINE"/>
 		</properties>
 	</persistence-unit>

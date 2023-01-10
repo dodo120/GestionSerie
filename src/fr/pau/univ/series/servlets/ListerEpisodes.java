@@ -28,6 +28,6 @@ public class ListerEpisodes extends HttpServlet{
 			request.setAttribute("erreur", e.getMessage());
 			e.printStackTrace();
 		}
-		this.getServletContext().getRequestDispatcher("/ListeSeries.jsp").forward(request, response);
+		this.getServletContext().getRequestDispatcher("/ListerEpisodes.jsp").forward(request, response);
 	}
 }

@@ -23,25 +23,5 @@
 			<attribute name="owner.project.facets" value="jpt.jpa"/>
 		</attributes>
 	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/clem6/.m2/repository/org/eclipse/persistence/eclipselink/2.5.2/eclipselink-2.5.2.jar" sourcepath="C:/Users/clem6/.m2/repository/org/eclipse/persistence/eclipselink/2.5.2/eclipselink-2.5.2-sources.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.archivename" value="eclipselink-2.5.2.jar"/>
-			<attribute name="maven.groupId" value="org.eclipse.persistence"/>
-			<attribute name="maven.artifactId" value="eclipselink"/>
-			<attribute name="maven.version" value="2.5.2"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
-	<classpathentry kind="lib" path="C:/Users/clem6/.m2/repository/org/glassfish/web/jakarta.servlet.jsp.jstl/2.0.0/jakarta.servlet.jsp.jstl-2.0.0.jar" sourcepath="C:/Users/clem6/.m2/repository/org/glassfish/web/jakarta.servlet.jsp.jstl/2.0.0/jakarta.servlet.jsp.jstl-2.0.0-sources.jar">
-		<attributes>
-			<attribute name="maven.pomderived" value="true"/>
-			<attribute name="org.eclipse.jst.component.archivename" value="jakarta.servlet.jsp.jstl-2.0.0.jar"/>
-			<attribute name="maven.groupId" value="org.glassfish.web"/>
-			<attribute name="maven.artifactId" value="jakarta.servlet.jsp.jstl"/>
-			<attribute name="maven.version" value="2.0.0"/>
-			<attribute name="maven.scope" value="compile"/>
-		</attributes>
-	</classpathentry>
 	<classpathentry kind="output" path="target/classes"/>
 </classpath>
